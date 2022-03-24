@@ -1,0 +1,101 @@
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+    background-color: white;
+    header{
+        .navbar{
+            background-color: rgb(255,222,89);
+        }
+    }
+    main{
+        .presentation{
+            margin-top: 4rem;
+            .presentation-text{
+                background-color: rgb(255,222,89);
+                margin-bottom: 2rem;
+                padding-top: .5rem;
+                padding-bottom: .5rem;
+                border-radius: 1rem;
+                div{
+                    .presentation-text-title{
+                        font-size: 2rem;
+                        font-weight: 500;
+                        text-align: center;
+                    }
+                    .presentation-text-description{
+                        font-size: 1rem;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+        .products{
+            .products-categories{
+                .products-categories-title{
+                    background-color: rgb(255,222,89);
+                    margin-bottom: 2rem;
+                    padding-top: .5rem;
+                    padding-bottom: .5rem;
+                    border-radius: 1rem;
+                    font-size: 2rem;
+                    font-weight: 500;
+                    text-align: center;
+
+                }
+                .products-categories-card{
+                    padding-bottom: 2rem;
+                    p{
+                        font-weight: 500;
+                    }
+                    img{
+                        border: 4px solid rgb(255,222,89);
+                    }
+                }
+            }
+        }
+        .bar{
+            background-color: rgb(255,222,89);
+            margin-bottom: 2rem;
+            padding-top: .5rem;
+            padding-bottom: .5rem;
+            border-radius: 1rem;
+            div{
+                .bar-item{
+                    i{
+                        margin: 1rem;
+                        font-size: 3rem;
+                    }
+                    p{
+                        font-size: 1.5rem;
+                    }
+                }
+            }
+        }
+        //product.html
+        .product-container{
+            margin-top: 6rem;
+            .product-container-img{
+                
+            }
+        }
+    }
+    footer{
+        div{
+            .footer-form{
+                .footer-form-label{
+                    input{
+                        border: 2px solid rgb(255,222,89);
+                        background-color: lightgray;
+                        border-radius: .3rem;
+                        &::placeholder{
+                            color: black;
+                            text-align: center;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

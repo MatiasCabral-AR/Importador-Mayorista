@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://kit.fontawesome.com/77868dd7b9.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/main.css">
+    <title>Producto - Imp. Mayorista</title>
+</head>
+<body>
+    <header>
+        <nav class="navbar fixed-top navbar-expand-lg navbar-light">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="../index.html">Logo Empresa</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                  <a class="nav-link active me-3 text-center" aria-current="page" href="#">Inicio</a>
+                  <a class="nav-link active me-3 text-center" href="#">Quienes Somos</a>
+                  <a class="nav-link active me-3 text-center" href="#">Shop</a>
+                  <a class="nav-link active text-center" href="#footer">Contacto</a>
+                </div>
+              </div>
+            </div>
+          </nav>
+    </header>
+    <main>
+        <section class="container d-flex flex-wrap flex-row justify-content-center product-container">
+            <article class="product-container-img mx-auto"> 
+                <img src="../resources/img/producto-zoquete.jpg" alt="">
+            </article>
+            <article class="mx-auto">
+              <p class="text-center">Docena Soquete</p>
+              <p class="text-center">$1000</p>
+              <p class="text-center">Medias Alto-max - 65% Algodon, 35% Polyester</p>
+              <p class="text-center">Talles del 34 al 43</p>
+              <p class="text-center">Los colores en la docena son surtidos</p>
+              <hr>
+              <div>
+                <ul class="text-center list-unstyled">
+                  Comprando mas de 10 docenas EN TOTAL de PRODUCTOS SURTIDOS,<br>
+                  el precio por docena de este producto sera de : 
+                  <li>+10 docenas : $700</li>
+                  <li>+30 docenas : $680</li>
+                  <li>+50 docenas : $650</li>
+                  <li>+120 docenas : $600</li>
+                </ul>
+              </div>
+              <hr>
+              <p class="text-center">Comprando mas de 10 docenas.<br>Envio a domicilio gratis dentro de Cordoba Capital.</p>
+            </article>
+        </section>
+        <section class="container-fluid bar mt-5">
+          <div class="d-flex justify-content-around align-items-center">
+            <div class="bar-item d-flex flex-column justify-content-center align-items-center">
+                <i class="fas fa-truck"></i>
+                <p>Enviamos a todo el pais</p>
+            </div>
+            <div class="bar-item d-flex flex-column justify-content-center align-items-center">
+                <div>
+                  <i class="fas fa-money-bill"></i>
+                  <i class="fa-solid fa-building-columns"></i>
+                </div>
+                <p>Efectivo y Tranferencias Bancarias</p>
+            </div>
+            <div class="bar-item d-flex flex-column justify-content-center align-items-center">
+                <i class="fa-solid fa-lock"></i>
+                <p>Compra Segura</p>
+            </div>
+          </div>
+      </section>
+    </main>
+    <footer class="mt-5 footer container d-flex justify-content-around" id="footer">
+      <div class="">
+          <p>Si deseas recibir nuestro catalogo de Productos, completa el siguiente formulario.</p>
+          <form action="" class="footer-form d-flex flex-column justify-content-center align-items-center mb-3">
+              <div class="footer-form-label my-1 w-100">
+                  <input class="w-100" type="text" id="name" placeholder="Nombre">
+              </div>
+              <div class="footer-form-label my-1 w-100">
+                  <input class="w-100" type="text" id="tel" placeholder="Numero de Telefono">
+              </div>
+              <div class="footer-form-label my-1 w-100">
+                  <input class="w-100" type="text" id="mail" placeholder="Direccion de E-mail">
+              </div>
+              <div class="footer-form-label">
+                  <input type="submit" value="Enviar">
+              </div>
+          </form>
+      </div>
+      <div class="d-flex flex-column justify-content-center">
+          <p class="fs-3">Datos de contacto</p>
+          <p><i class="fas fa-phone"></i> : XXXXXXXXX</p>
+          <p><i class="fas fa-envelope"></i> : XXXXXX@XXXXX</p>
+          <p><i class="fas fa-clock"></i> : XXXXXXXXXX</p>
+      </div>
+  </footer>
+  <div class="fixed-bottom d-flex justify-content-end mb-3">
+    <i class="fa-brands fa-whatsapp fa-2xl me-3"></i>
+    <i class="fa-brands fa-facebook fa-2xl me-3"></i>
+    <i class="fa-brands fa-instagram fa-2xl me-2"></i>
+  </div>
+</body>
+</html>
