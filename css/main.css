@@ -1,3 +1,16 @@
+/* Color var */
+/* Colors map */
+/* Function to get color */
+/* Label styling to @extend into other classes */
+.lbl, body main .products .products-container .row div .product-grid .product-image .product-discount-label, body main .products .products-container .row div .product-grid .product-image .product-new-label {
+  color: #fff;
+  font-size: 1rem;
+  padding: .1rem .3rem;
+  display: block;
+  position: absolute;
+  top: .5rem; }
+
+/* Animation mixin */
 body {
   margin: 0;
   padding: 0;
@@ -6,6 +19,8 @@ body {
   background-color: white; }
   body header .navbar {
     background-color: #ffde59; }
+    body header .navbar div .cart-button {
+      position: relative; }
   body main .presentation {
     margin-top: 4rem; }
     body main .presentation .presentation-text {
@@ -21,7 +36,7 @@ body {
       body main .presentation .presentation-text div .presentation-text-description {
         font-size: 1rem;
         text-align: center; }
-  body main .products .products-categories .products-categories-title {
+  body main .products .products-container .products-container-title {
     background-color: #ffde59;
     margin-bottom: 2rem;
     padding-top: .5rem;
@@ -30,18 +45,130 @@ body {
     font-size: 2rem;
     font-weight: 500;
     text-align: center; }
-  body main .products .products-categories .products-categories-card {
+  body main .products .products-container .row div .product-grid {
+    text-align: center;
+    padding: 0 0 72px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    position: relative;
+    z-index: 1; }
+    body main .products .products-container .row div .product-grid:hover .product-buy {
+      transform: translateY(-3rem);
+      transition: all .2s ease-out 0s;
+      opacity: 1; }
+      body main .products .products-container .row div .product-grid:hover .product-buy a::before {
+        content: attr(data-tip);
+        font-size: small;
+        padding: 2px;
+        display: block;
+        position: absolute;
+        text-align: center;
+        opacity: 0;
+        transition: all .3s;
+        pointer-events: none;
+        color: #000;
+        background-color: rgba(255, 255, 255, 0.5); }
+      body main .products .products-container .row div .product-grid:hover .product-buy a:hover::before {
+        transform: translateY(-2rem);
+        opacity: 1; }
+    body main .products .products-container .row div .product-grid .product-buy {
+      opacity: 0; }
+      body main .products .products-container .row div .product-grid .product-buy a {
+        text-decoration: none; }
+        body main .products .products-container .row div .product-grid .product-buy a i {
+          padding: .6rem;
+          background-color: rgba(255, 255, 255, 0.5);
+          transition: all .5s ease-out 0s;
+          cursor: pointer; }
+        body main .products .products-container .row div .product-grid .product-buy a .ver {
+          margin-right: .2rem; }
+        body main .products .products-container .row div .product-grid .product-buy a .agregar {
+          margin-left: .2rem; }
+    body main .products .products-container .row div .product-grid .product-content {
+      background-color: #fff;
+      text-align: center;
+      padding: 12px 0;
+      margin: 0 auto;
+      position: absolute;
+      left: 0;
+      right: 0;
+      z-index: 1;
+      transition: all .3s; }
+      body main .products .products-container .row div .product-grid .product-content:hover .title a {
+        color: #000; }
+      body main .products .products-container .row div .product-grid .product-content .title {
+        font-size: 1rem;
+        font-weight: 400;
+        letter-spacing: .5px;
+        margin: 0 0 10px;
+        transition: all .3s ease-out; }
+        body main .products .products-container .row div .product-grid .product-content .title a {
+          color: #777; }
+          body main .products .products-container .row div .product-grid .product-content .title a:hover {
+            color: #000;
+            font-weight: 600; }
+      body main .products .products-container .row div .product-grid .product-content .price {
+        color: #333;
+        font-size: 17px;
+        font-weight: 700;
+        margin-bottom: 8px;
+        text-align: center;
+        transition: all .3s; }
+        body main .products .products-container .row div .product-grid .product-content .price span {
+          color: #777;
+          font-size: 13px;
+          font-weight: 400;
+          text-decoration: line-through;
+          margin-left: 3px;
+          display: inline-block; }
+    body main .products .products-container .row div .product-grid .product-image {
+      position: relative;
+      transition: all .3s ease 0s; }
+      body main .products .products-container .row div .product-grid .product-image a {
+        display: block;
+        cursor: default; }
+        body main .products .products-container .row div .product-grid .product-image a .pic-1 {
+          opacity: 1;
+          transition: all .3s ease-out 0s; }
+        body main .products .products-container .row div .product-grid .product-image a .pic-2 {
+          opacity: 0;
+          position: absolute;
+          top: 0;
+          left: 0;
+          transition: all .3s ease-out 0s; }
+        body main .products .products-container .row div .product-grid .product-image a:hover .pic-2 {
+          opacity: 1; }
+      body main .products .products-container .row div .product-grid .product-image img {
+        width: 100%;
+        height: auto; }
+      body main .products .products-container .row div .product-grid .product-image .product-discount-label {
+        background-color: #333;
+        left: auto;
+        right: 0; }
+      body main .products .products-container .row div .product-grid .product-image .product-new-label {
+        color: black;
+        background-color: #FCCC0D;
+        left: 0; }
+  body main .products .products-container .products-container-card {
     padding-bottom: 2rem; }
-    body main .products .products-categories .products-categories-card p {
+    body main .products .products-container .products-container-card p {
       font-weight: 500; }
-    body main .products .products-categories .products-categories-card img {
-      border: 4px solid #ffde59; }
+    body main .products .products-container .products-container-card div {
+      background-color: aqua; }
+      body main .products .products-container .products-container-card div img {
+        border: 4px solid #ffde59;
+        max-width: 100%; }
+      body main .products .products-container .products-container-card div #add-cart {
+        width: fit-content; }
+      body main .products .products-container .products-container-card div #product-link {
+        width: fit-content; }
   body main .bar {
     background-color: #ffde59;
     margin-bottom: 2rem;
     padding-top: .5rem;
     padding-bottom: .5rem;
-    border-radius: 1rem; }
+    border-radius: 1rem;
+    max-width: 100%; }
     body main .bar div .bar-item i {
       margin: 1rem;
       font-size: 3rem; }
@@ -49,10 +176,21 @@ body {
       font-size: 1.5rem; }
   body main .product-container {
     margin-top: 6rem; }
+  body dialog {
+    width: 100%; }
+    body dialog .cart-product {
+      border: 2px solid #FCCC0D; }
+      body dialog .cart-product .cart-product-info {
+        display: flex;
+        justify-content: space-around; }
+        body dialog .cart-product .cart-product-info .product-img {
+          width: 180px; }
   body footer div .footer-form .footer-form-label input {
-    border: 2px solid #ffde59;
+    border: 2px solid #FFDE58;
     background-color: lightgray;
     border-radius: .3rem; }
     body footer div .footer-form .footer-form-label input::placeholder {
       color: black;
       text-align: center; }
+  body .fixed-bottom {
+    background-color: rgba(255, 255, 255, 0.5); }

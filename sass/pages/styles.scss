@@ -1,3 +1,5 @@
+@import 'utilities';
+
 body{
     margin: 0;
     padding: 0;
@@ -7,6 +9,11 @@ body{
     header{
         .navbar{
             background-color: rgb(255,222,89);
+            div{
+                .cart-button{
+                    position: relative;
+                }
+            }
         }
     }
     main{
@@ -32,8 +39,8 @@ body{
             }
         }
         .products{
-            .products-categories{
-                .products-categories-title{
+            .products-container{
+                .products-container-title{
                     background-color: rgb(255,222,89);
                     margin-bottom: 2rem;
                     padding-top: .5rem;
@@ -44,13 +51,151 @@ body{
                     text-align: center;
 
                 }
-                .products-categories-card{
+                .row{
+                    div{
+                        .product-grid{
+                            text-align:center;
+                            padding:0 0 72px;
+                            border:1px solid rgba(0,0,0,.1);
+                            overflow:hidden;
+                            position:relative;
+                            z-index:1;
+                            &:hover .product-buy{
+                                @include move-up(3rem);
+                                transition: all .2s ease-out 0s;
+                                opacity: 1;
+                                a{
+                                    &::before{
+                                        @include before-icon;
+                                    }
+                                    &:hover::before{
+                                        @include move-up(2rem);
+                                        opacity: 1;
+                                    }
+                                }
+                            }
+                            .product-buy{
+                                opacity: 0;
+                                a{
+                                    text-decoration: none;
+                                    i{
+                                        padding: .6rem;
+                                        background-color: $bg-tp;
+                                        transition: all .5s ease-out 0s;
+                                        cursor: pointer;
+                                    }
+                                    .ver{
+                                        margin-right: .2rem;
+                                    }
+                                    .agregar{
+                                        margin-left: .2rem;
+                                    }
+                                }
+    
+                                
+                            }
+                            .product-content{
+                                background-color: clr(monochromatic, light);
+                                text-align:center;
+                                padding:12px 0;
+                                margin:0 auto;
+                                position:absolute;
+                                left:0;
+                                right:0;
+                                z-index:1;
+                                transition:all .3s;
+                                &:hover .title a{
+                                    color: clr(monochromatic, dark);
+                                }
+                                .title{
+                                    font-size:1rem;
+                                    font-weight:400;
+                                    letter-spacing:.5px;
+                                    margin:0 0 10px;
+                                    transition:all .3s ease-out;
+                                    a{
+                                        &:hover{
+                                            color: clr(monochromatic, dark);
+                                            font-weight: 600;
+                                        }
+                                        color: clr(monochromatic, gray-light);
+                                    }
+                                }
+                                .price{
+                                    color: clr(monochromatic, gray-dark);
+                                    font-size:17px;
+                                    font-weight:700;
+                                    margin-bottom:8px;
+                                    text-align:center;
+                                    transition:all .3s;
+                                    span{
+                                        color: clr(monochromatic, gray-light);
+                                        font-size:13px;
+                                        font-weight:400;
+                                        text-decoration:line-through;
+                                        margin-left:3px;
+                                        display:inline-block;
+                                    }
+                                }
+                            }
+                            .product-image{
+                                position:relative;
+                                transition:all .3s ease 0s;
+                                a{
+                                    display: block;
+                                    cursor: default;
+                                    .pic-1{
+                                        opacity:1;
+                                        transition:all .3s ease-out 0s
+                                    }
+                                    .pic-2{
+                                        opacity:0;
+                                        position:absolute;
+                                        top:0;
+                                        left:0;
+                                        transition:all .3s ease-out 0s
+                                    }
+                                    &:hover .pic-2{
+                                        opacity: 1;
+                                    }
+                                }
+                                img{
+                                    width: 100%;
+                                    height: auto;
+                                }
+                                .product-discount-label{
+                                    @extend .lbl;
+                                    background-color: clr(monochromatic, gray-dark);
+                                    left:auto;
+                                    right: 0;
+                                }
+                                .product-new-label{
+                                    @extend .lbl;
+                                    color: black;
+                                    background-color: clr(imp, dark);
+                                    left:0;
+                                }
+                            }
+                        }
+                    }
+                }
+                .products-container-card{
                     padding-bottom: 2rem;
                     p{
                         font-weight: 500;
                     }
-                    img{
-                        border: 4px solid rgb(255,222,89);
+                    div{
+                        background-color: aqua;
+                        img{
+                            border: 4px solid rgb(255,222,89);
+                            max-width: 100%;
+                        }
+                        #add-cart{
+                            width: fit-content;
+                        }
+                        #product-link{
+                            width: fit-content;
+                        }
                     }
                 }
             }
@@ -61,6 +206,7 @@ body{
             padding-top: .5rem;
             padding-bottom: .5rem;
             border-radius: 1rem;
+            max-width: 100%;
             div{
                 .bar-item{
                     i{
@@ -81,12 +227,25 @@ body{
             }
         }
     }
+    dialog{
+        width: 100%;
+        .cart-product{
+            border: 2px solid clr(imp, dark);
+            .cart-product-info{
+                display: flex;
+                justify-content: space-around;
+                .product-img{
+                    width: 180px;
+                }
+            }
+        }
+    }
     footer{
         div{
             .footer-form{
                 .footer-form-label{
                     input{
-                        border: 2px solid rgb(255,222,89);
+                        border: 2px solid clr(imp, base);
                         background-color: lightgray;
                         border-radius: .3rem;
                         &::placeholder{
@@ -98,4 +257,8 @@ body{
             }
         }
     }
+    .fixed-bottom{
+        background-color: $bg-tp;
+    }
 }
+

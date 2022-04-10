@@ -1,0 +1,54 @@
+//            Utilities
+
+// Variables
+
+/* Color var */
+
+$bg-tp : rgba(255, 255, 255, 0.5);
+
+/* Colors map */
+
+$colors: (
+    monochromatic: (light : #fff, gray-light : #777, gray-dark : #333, dark : #000),
+    imp: (base : #FFDE58, light : #EBD57F, dark : #FCCC0D ) 
+);
+
+//  Functions, maps, extends, mixins 
+
+/* Function to get color */
+
+@function clr($type, $color){
+    @return map-get(map-get($colors, $type), $color);
+}
+
+/* Label styling to @extend into other classes */
+
+.lbl{
+    color: clr(monochromatic, light);
+    font-size: 1rem;
+    padding:.1rem .3rem;
+    display:block;
+    position:absolute;
+    top: .5rem;
+}
+
+@mixin before-icon{
+    content: attr(data-tip);
+    font-size: small;
+    padding: 2px;
+    display: block;
+    position: absolute;
+    text-align: center;
+    opacity: 0;
+    transition: all .3s;
+    pointer-events: none;
+    color: clr(monochromatic, dark);
+    background-color: $bg-tp;
+}
+
+/* Animation mixin */
+@mixin move-up ($rem) {
+    @if($rem > 0){
+        transform: translateY(-$rem);
+    }
+}
