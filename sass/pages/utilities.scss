@@ -4,13 +4,13 @@
 
 /* Color var */
 
-$bg-tp : rgba(255, 255, 255, 0.5);
+$bg-tp : rgba(235, 213, 127, 0.8);
 
 /* Colors map */
 
 $colors: (
     monochromatic: (light : #fff, gray-light : #777, gray-dark : #333, dark : #000),
-    imp: (base : #FFDE58, light : #EBD57F, dark : #FCCC0D ) 
+    imp: (base : #FFDE58, light : rgb(235, 213, 127), dark : #FCCC0D ) 
 );
 
 //  Functions, maps, extends, mixins 
