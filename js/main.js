@@ -32,6 +32,7 @@ function addToCartClick(event){
     let price = productInfo.getElementsByClassName("price")[0].innerText
     addToCart(name, price, productImg)
 }
+
 // Add to Cart (CREATE ROW) function
 function addToCart(name, price, productImg){
     let row = document.createElement("div")
@@ -88,7 +89,7 @@ function removeCartItem(event){
     updateCartTotal()
 }
 
-// Object Product
+// Objeto Producto (Not used yet)
 function Product(id, name, price, discount){
     this.id = id;
     this.name = name;
