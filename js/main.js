@@ -123,10 +123,15 @@ function updateCartTotal(){
 
 // Cart purchase
 function buyCartCicked(){
-    alert("Muchas Gracias por su Compra !")
     let cart = document.getElementsByClassName("modal-body")[0]
-    while (cart.hasChildNodes()){
-        cart.removeChild(cart.firstChild)
+    console.log(cart.hasChildNodes())
+    if (cart.hasChildNodes()){
+        while (cart.hasChildNodes()){
+            cart.removeChild(cart.firstChild)
+        }
+        alert("Muchas Gracias por su Compra !")
+    }else{
+        alert("El carrito esta vacio")
     }
     updateCartTotal();
 }
