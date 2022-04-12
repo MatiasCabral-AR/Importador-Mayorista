@@ -5,21 +5,26 @@ if (document.readyState == 'loading'){
 }
 
 function main(){
+    // Delete cart product Event Listener
     const deleteProduct = document.getElementsByClassName("btn-danger");
     for (let i = 0; i < deleteProduct.length; i++){
         let button = deleteProduct[i]
         button.addEventListener("click", removeCartItem)
     }
+    // Product quantity change (input) Event Listener
     let quantityInputs = document.getElementsByClassName("cart-quantity-input")
     for (let i = 0; i < quantityInputs.length; i++){
         let input = quantityInputs[i]
         input.addEventListener("change", quantityChanged)
     }
+    // Add to cart button Event Listener
     let addToCartButtons = document.getElementsByClassName("add-cart")
     for (let i = 0; i < addToCartButtons.length; i++){
         let button = addToCartButtons[i]
         button.addEventListener("click", addToCartClick)
     }
+
+    // Buy cart button Event Listener
     const buyCart = document.getElementsByClassName("btn-primary")[0].addEventListener("click", buyCartCicked);
 }
 
@@ -94,6 +99,7 @@ function Product(id, name, price, discount){
     this.id = id;
     this.name = name;
     this.price = price;
+    this.discount = discount;
     this.salePrice = () => this.price - (this.price * this.discount / 100)
 }
 
