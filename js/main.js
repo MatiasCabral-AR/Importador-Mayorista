@@ -9,6 +9,7 @@ function main(){
     let productsArray = document.getElementsByClassName("product-grid")
     for (let i = 0; i < productsArray.length; i++){
         let product = productsArray[i]
+        product.setAttribute('id', products[i].id)
         productCreation(product, products[i])
     }
     // Delete cart product Event Listener
@@ -89,7 +90,6 @@ function quantityChanged(event){
 // Add Product to Cart BUTTON function
 function addToCartClick(event){
     let button = event.target
-
     let productInfo = button.parentElement.parentElement.parentElement.parentElement.lastElementChild
     let productImg = button.parentElement.parentElement.parentElement.getElementsByClassName("pic-1")[0].src
     let name = productInfo.getElementsByClassName("title")[0].innerText
