@@ -5,6 +5,12 @@ if (document.readyState == 'loading'){
 }
 
 function main(){
+    // Load Content in Product <div>
+    let productsArray = document.getElementsByClassName("product-grid")
+    for (let i = 0; i < productsArray.length; i++){
+        let product = productsArray[i]
+        productCreation(product, products[i])
+    }
     // Delete cart product Event Listener
     const deleteProduct = document.getElementsByClassName("btn-danger");
     for (let i = 0; i < deleteProduct.length; i++){
@@ -23,14 +29,67 @@ function main(){
         let button = addToCartButtons[i]
         button.addEventListener("click", addToCartClick)
     }
-
     // Buy cart button Event Listener
     const buyCart = document.getElementsByClassName("btn-primary")[0].addEventListener("click", buyCartCicked);
+}
+
+// Function add content to all Product <div>
+function productCreation(product, products){
+    let price = products.price
+    let discount = ""
+    let spanClass = "d-none"
+    let realPrice = ""
+    let id = products.id
+    if (parseInt(products.discount) > 0){
+        discount = `% ${products.discount}`
+        spanClass = "" 
+        realPrice = `$${price}`
+        price = parseInt(products.price) - (parseInt(products.price) * parseInt(products.discount) / 100)
+    }
+    let productContent = `
+                        <div class="product-image">
+                            <a href="javascript:void(0)">
+                                <img class="pic-1" alt="Imagen de Producto" src="${products.src1}">
+                                <img class="pic-2" alt="Imagen de Producto" src="${products.src2}">
+                            </a>
+                            <div class="product-buy w-100 d-flex justify-content-center align-items-center position-absolute">
+                            <a href="pages/shop/product.html" data-tip="Ver Producto" class="d-flex justify-content-center align-items-center">
+                                <i class="fas fa-search text-dark ver"></i>
+                            </a>
+                            <a class="add-cart" href="javascript:void(0)" data-tip="Agregar a Carrito" class="d-flex justify-content-center align-items-center">
+                                <i class="fas fa-shopping-cart text-dark agregar"></i>
+                            </a>
+                            </div> 
+                            <span class="product-new-label ${spanClass}">Sale</span>
+                            <span class="product-discount-label ${spanClass}">${discount}</span>
+                        </div>
+                        <div class="product-content">
+                            <p class="title"><a href="pages/shop/product.html">${products.name}</a></p>
+                            <div class="price">${price}<span class="discount">${realPrice}</span></div>
+                        </div>`
+    product.innerHTML = productContent
+}
+
+// Remove cart item function
+function removeCartItem(event){
+    let buttonClicked = event.target
+    buttonClicked.parentElement.parentElement.remove()
+    updateCartTotal()
+}
+
+// Cart Item quantity update 
+function quantityChanged(event){
+    let input = event.target;
+    if (isNaN(input.value) || input.value <= 0){
+        input.value = 1;
+    }
+    updateCartTotal()
 }
 
 // Add Product to Cart BUTTON function
 function addToCartClick(event){
     let button = event.target
+
     let productInfo = button.parentElement.parentElement.parentElement.parentElement.lastElementChild
     let productImg = button.parentElement.parentElement.parentElement.getElementsByClassName("pic-1")[0].src
     let name = productInfo.getElementsByClassName("title")[0].innerText
@@ -76,22 +135,6 @@ function addToCart(name, price, productImg){
     row.getElementsByClassName("cart-quantity-input")[0].addEventListener("change", quantityChanged)
     updateCartTotal()
 
-}
-
-// Cart Item quantity update 
-function quantityChanged(event){
-    let input = event.target;
-    if (isNaN(input.value) || input.value <= 0){
-        input.value = 1;
-    }
-    updateCartTotal()
-}
-
-// Remove cart item function
-function removeCartItem(event){
-    let buttonClicked = event.target
-    buttonClicked.parentElement.parentElement.remove()
-    updateCartTotal()
 }
 
 // Objeto Producto (Not used yet)

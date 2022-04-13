@@ -47,7 +47,7 @@ body {
     text-align: center; }
   body main .products .products-container .row div .product-grid {
     text-align: center;
-    padding: 0 0 72px;
+    padding: 0 0 5rem;
     border: 2px solid #FCCC0D;
     overflow: hidden;
     position: relative;
@@ -71,6 +71,10 @@ body {
       body main .products .products-container .row div .product-grid:hover .product-buy a:hover::before {
         transform: translateY(-2rem);
         opacity: 1; }
+    body main .products .products-container .row div .product-grid:hover .product-content .title a {
+      color: #000;
+      font-weight: 600;
+      text-decoration: underline; }
     body main .products .products-container .row div .product-grid .product-buy {
       opacity: 0; }
       body main .products .products-container .row div .product-grid .product-buy a {
@@ -87,15 +91,13 @@ body {
     body main .products .products-container .row div .product-grid .product-content {
       background-color: #fff;
       text-align: center;
-      padding: 12px 0;
+      padding: .5rem;
       margin: 0 auto;
       position: absolute;
       left: 0;
       right: 0;
       z-index: 1;
       transition: all .3s; }
-      body main .products .products-container .row div .product-grid .product-content:hover .title a {
-        color: #000; }
       body main .products .products-container .row div .product-grid .product-content .title {
         font-size: 1rem;
         font-weight: 400;
@@ -103,10 +105,8 @@ body {
         margin: 0 0 10px;
         transition: all .3s ease-out; }
         body main .products .products-container .row div .product-grid .product-content .title a {
-          color: #777; }
-          body main .products .products-container .row div .product-grid .product-content .title a:hover {
-            color: #000;
-            font-weight: 600; }
+          text-decoration: none;
+          color: #333; }
       body main .products .products-container .row div .product-grid .product-content .price {
         color: #333;
         font-size: 17px;

@@ -55,7 +55,7 @@ body{
                     div{
                         .product-grid{
                             text-align:center;
-                            padding:0 0 72px;
+                            padding:0 0 5rem;
                             border:2px solid clr(imp, dark);
                             overflow:hidden;
                             position:relative;
@@ -73,6 +73,11 @@ body{
                                         opacity: 1;
                                     }
                                 }
+                            }
+                            &:hover .product-content .title a{
+                                color: clr(monochromatic, dark);
+                                font-weight: 600;
+                                text-decoration: underline;
                             }
                             .product-buy{
                                 opacity: 0;
@@ -97,16 +102,13 @@ body{
                             .product-content{
                                 background-color: clr(monochromatic, light);
                                 text-align:center;
-                                padding:12px 0;
+                                padding: .5rem;
                                 margin:0 auto;
                                 position:absolute;
                                 left:0;
                                 right:0;
                                 z-index:1;
                                 transition:all .3s;
-                                &:hover .title a{
-                                    color: clr(monochromatic, dark);
-                                }
                                 .title{
                                     font-size:1rem;
                                     font-weight:400;
@@ -114,11 +116,8 @@ body{
                                     margin:0 0 10px;
                                     transition:all .3s ease-out;
                                     a{
-                                        &:hover{
-                                            color: clr(monochromatic, dark);
-                                            font-weight: 600;
-                                        }
-                                        color: clr(monochromatic, gray-light);
+                                        text-decoration: none;
+                                        color: clr(monochromatic, gray-dark);
                                     }
                                 }
                                 .price{
