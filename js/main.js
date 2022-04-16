@@ -5,6 +5,7 @@ if (document.readyState == 'loading'){
 }
 
 function main(){
+    cartArray = []
     // Load Content in Product <div>
     let productsArray = document.getElementsByClassName("product-grid")
     for (let i = 0; i < productsArray.length; i++){
@@ -29,7 +30,9 @@ function main(){
     for (let i = 0; i < addToCartButtons.length; i++){
         let button = addToCartButtons[i]
         let productContainer = button.parentElement.parentElement.parentElement
-        button.addEventListener("click", addToCartClick(productContainer, products))
+        button.addEventListener("click", function(){
+            addToCartClick(productContainer, products, cartArray)
+        })
     }
     // Buy cart button Event Listener
     const buyCart = document.getElementsByClassName("btn-primary")[0].addEventListener("click", buyCartCicked);
@@ -76,6 +79,7 @@ function productCreation(product, products){
 function removeCartItem(event){
     let buttonClicked = event.target
     buttonClicked.parentElement.parentElement.remove()
+    sessionStorage.removeItem()
     updateCartTotal()
 }
 
@@ -89,17 +93,11 @@ function quantityChanged(event){
 }
 
 // Add Product to Cart BUTTON function
-function addToCartClick(productContainer, products){
+function addToCartClick(productContainer, products, cartArray){
     let productId = productContainer.getAttribute('id')
     let product = products.find(object => object.id === productId)
+    sessionStorage.setItem(`${productId}, product`)
     addToCart(product.name, product.price, product.src1)
-    /*console.log(productId)
-    let button = event.target
-    let productInfo = button.parentElement.parentElement.parentElement.parentElement.lastElementChild
-    let productImg = button.parentElement.parentElement.parentElement.getElementsByClassName("pic-1")[0].src
-    let name = productInfo.getElementsByClassName("title")[0].innerText
-    let price = productInfo.getElementsByClassName("price")[0].innerText
-    addToCart(name, price, productImg)*/
 }
 
 // Add to Cart (CREATE ROW) function
@@ -173,7 +171,6 @@ function updateCartTotal(){
 // Cart purchase
 function buyCartCicked(){
     let cart = document.getElementsByClassName("modal-body")[0]
-    console.log(cart.hasChildNodes())
     if (cart.hasChildNodes()){
         while (cart.hasChildNodes()){
             cart.removeChild(cart.firstChild)
@@ -183,4 +180,8 @@ function buyCartCicked(){
         alert("El carrito esta vacio")
     }
     updateCartTotal();
+}
+
+function getCart(){
+
 }
