@@ -28,7 +28,8 @@ function main(){
     let addToCartButtons = document.getElementsByClassName("add-cart")
     for (let i = 0; i < addToCartButtons.length; i++){
         let button = addToCartButtons[i]
-        button.addEventListener("click", addToCartClick)
+        let productContainer = button.parentElement.parentElement.parentElement
+        button.addEventListener("click", addToCartClick(productContainer, products))
     }
     // Buy cart button Event Listener
     const buyCart = document.getElementsByClassName("btn-primary")[0].addEventListener("click", buyCartCicked);
@@ -88,17 +89,22 @@ function quantityChanged(event){
 }
 
 // Add Product to Cart BUTTON function
-function addToCartClick(event){
+function addToCartClick(productContainer, products){
+    let productId = productContainer.getAttribute('id')
+    let product = products.find(object => object.id === productId)
+    addToCart(product.name, product.price, product.src1)
+    /*console.log(productId)
     let button = event.target
     let productInfo = button.parentElement.parentElement.parentElement.parentElement.lastElementChild
     let productImg = button.parentElement.parentElement.parentElement.getElementsByClassName("pic-1")[0].src
     let name = productInfo.getElementsByClassName("title")[0].innerText
     let price = productInfo.getElementsByClassName("price")[0].innerText
-    addToCart(name, price, productImg)
+    addToCart(name, price, productImg)*/
 }
 
 // Add to Cart (CREATE ROW) function
 function addToCart(name, price, productImg){
+    console.log("en funcion addtocart")
     let row = document.createElement("div")
     row.classList = "cart-product";
     let modalBody = document.getElementsByClassName("modal-body")[0]
