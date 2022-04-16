@@ -28,7 +28,9 @@ function main(){
     let addToCartButtons = document.getElementsByClassName("add-cart")
     for (let i = 0; i < addToCartButtons.length; i++){
         let button = addToCartButtons[i]
-        button.addEventListener("click", addToCartClick)
+        let productId = button.parentElement.parentElement.parentElement.getAttribute('id') 
+        let product = products.find(element => element.id === productId )
+        button.addEventListener('click', addToCartClick(product))
     }
     // Buy cart button Event Listener
     const buyCart = document.getElementsByClassName("btn-primary")[0].addEventListener("click", buyCartCicked);
@@ -40,7 +42,6 @@ function productCreation(product, products){
     let discount = ""
     let spanClass = "d-none"
     let realPrice = ""
-    let id = products.id
     if (parseInt(products.discount) > 0){
         discount = `% ${products.discount}`
         spanClass = "" 
@@ -88,12 +89,10 @@ function quantityChanged(event){
 }
 
 // Add Product to Cart BUTTON function
-function addToCartClick(event){
-    let button = event.target
-    let productInfo = button.parentElement.parentElement.parentElement.parentElement.lastElementChild
-    let productImg = button.parentElement.parentElement.parentElement.getElementsByClassName("pic-1")[0].src
-    let name = productInfo.getElementsByClassName("title")[0].innerText
-    let price = productInfo.getElementsByClassName("price")[0].innerText
+function addToCartClick(product){
+    let name = product.name
+    let price = product.price
+    let productImg = product.src1
     addToCart(name, price, productImg)
 }
 
