@@ -11,6 +11,8 @@
     <script src="https://kit.fontawesome.com/77868dd7b9.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/main.css">
+    <script src="../js/data.js" async></script>
+    <script src="../js/main.js" async></script>
     <title>Producto - Imp. Mayorista</title>
 </head>
 <body>
@@ -23,7 +25,7 @@
               </button>
               <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                  <a class="nav-link active me-3 text-center" aria-current="page" href="#">Inicio</a>
+                  <a class="nav-link active me-3 text-center" aria-current="page" href="../index.html">Inicio</a>
                   <a class="nav-link active me-3 text-center" href="#">Quienes Somos</a>
                   <a class="nav-link active me-3 text-center" href="#">Shop</a>
                   <a class="nav-link active text-center" href="#footer">Contacto</a>
@@ -35,7 +37,7 @@
     <main>
         <section class="container d-flex flex-wrap flex-row justify-content-center product-container">
             <article class="product-container-img mx-auto"> 
-                <img src="../resources/img/producto-zoquete.jpg" alt="">
+                <img src="../resources/img/product-images/soquete-h1.jpg" alt="">
             </article>
             <article class="mx-auto">
               <p class="text-center">Docena Soquete</p>
@@ -77,6 +79,25 @@
             </div>
           </div>
       </section>
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Carrito</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body"></div>
+            <div class="modal-footer">
+              <p class="mx-auto fw-bold">Total Compra : <span class="fw-normal" id="cart-total">$ 0</span></p>
+              <div class="modal-buttons">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary">Comprar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
     <footer class="mt-5 footer container d-flex justify-content-around" id="footer">
       <div class="">
@@ -104,9 +125,10 @@
       </div>
   </footer>
   <div class="fixed-bottom d-flex justify-content-end mb-3">
-    <i class="fa-brands fa-whatsapp fa-2xl me-3"></i>
-    <i class="fa-brands fa-facebook fa-2xl me-3"></i>
-    <i class="fa-brands fa-instagram fa-2xl me-2"></i>
-  </div>
+    <a data-bs-toggle="modal" data-bs-target="#exampleModal" class="text-decoration-none text-dark" href="#modal"><i class="fas fa-shopping-cart fa-2xl me-3"></i></a>
+    <a class="text-dark" href=""><i class="fa-brands fa-whatsapp fa-2xl me-3"></i></a>
+    <a class="text-dark" href=""><i class="fa-brands fa-facebook fa-2xl me-3"></i></a>
+    <a class="text-dark" href=""><i class="fa-brands fa-instagram fa-2xl me-2"></i></a>     
+</div>
 </body>
 </html>

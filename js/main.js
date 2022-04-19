@@ -5,35 +5,45 @@ if (document.readyState == 'loading'){
 }
 
 function main(){
+
+    // Check cart
+    console.log("Pagina Cargada")
+    checkCart();
+
     // Load Content in Product <div>
-    let productsArray = document.getElementsByClassName("product-grid")
-    for (let i = 0; i < productsArray.length; i++){
-        let product = productsArray[i]
+    let productsGrid = document.getElementsByClassName("product-grid")
+    for (let i = 0; i < productsGrid.length; i++){
+        let products = JSON.parse(localStorage.getItem("products"))
+        let product = productsGrid[i]
         product.setAttribute('id', products[i].id)
         productCreation(product, products[i])
+        console.log(`Producto ${i}, creado`)
     }
     // Delete cart product Event Listener
     const deleteProduct = document.getElementsByClassName("btn-danger");
     for (let i = 0; i < deleteProduct.length; i++){
         let button = deleteProduct[i]
-        button.addEventListener("click", removeCartItem)
+        button.addEventListener("click",removeCartItem)
     }
     // Product quantity change (input) Event Listener
     let quantityInputs = document.getElementsByClassName("cart-quantity-input")
     for (let i = 0; i < quantityInputs.length; i++){
         let input = quantityInputs[i]
-        input.addEventListener("change", quantityChanged)
+        input.addEventListener("change", function(){
+            quantityChanged(input)
+        })
     }
     // Add to cart button Event Listener
     let addToCartButtons = document.getElementsByClassName("add-cart")
     for (let i = 0; i < addToCartButtons.length; i++){
         let button = addToCartButtons[i]
-        let productId = button.parentElement.parentElement.parentElement.getAttribute('id') 
-        let product = products.find(element => element.id === productId )
-        button.addEventListener('click', addToCartClick(product))
+        let productContainer = button.parentElement.parentElement.parentElement
+        button.addEventListener("click", function(){
+            addToCartClick2(productContainer, JSON.parse(localStorage.getItem("products")), JSON.parse(localStorage.getItem("cart")))
+        })
     }
     // Buy cart button Event Listener
-    const buyCart = document.getElementsByClassName("btn-primary")[0].addEventListener("click", buyCartCicked);
+    document.getElementsByClassName("btn-primary")[0].addEventListener("click", buyCartCicked);
 }
 
 // Function add content to all Product <div>
@@ -55,7 +65,7 @@ function productCreation(product, products){
                                 <img class="pic-2" alt="Imagen de Producto" src="${products.src2}">
                             </a>
                             <div class="product-buy w-100 d-flex justify-content-center align-items-center position-absolute">
-                            <a href="pages/shop/product.html" data-tip="Ver Producto" class="d-flex justify-content-center align-items-center">
+                            <a href="pages/product.html" data-tip="Ver Producto" class="d-flex justify-content-center align-items-center">
                                 <i class="fas fa-search text-dark ver"></i>
                             </a>
                             <a class="add-cart" href="javascript:void(0)" data-tip="Agregar a Carrito" class="d-flex justify-content-center align-items-center">
@@ -75,65 +85,21 @@ function productCreation(product, products){
 // Remove cart item function
 function removeCartItem(event){
     let buttonClicked = event.target
+    let productId = buttonClicked.parentElement.parentElement.id
     buttonClicked.parentElement.parentElement.remove()
+    let cart = JSON.parse(localStorage.getItem("cart"))
+    cart = cart.filter(product => product.id !== productId)
+    localStorage.setItem("cart", JSON.stringify(cart))
+    console.log("Boton Borrar presionado")
     updateCartTotal()
 }
 
 // Cart Item quantity update 
-function quantityChanged(event){
-    let input = event.target;
+function quantityChanged(input){
     if (isNaN(input.value) || input.value <= 0){
         input.value = 1;
     }
     updateCartTotal()
-}
-
-// Add Product to Cart BUTTON function
-function addToCartClick(product){
-    let name = product.name
-    let price = product.price
-    let productImg = product.src1
-    addToCart(name, price, productImg)
-}
-
-// Add to Cart (CREATE ROW) function
-function addToCart(name, price, productImg){
-    let row = document.createElement("div")
-    row.classList = "cart-product";
-    let modalBody = document.getElementsByClassName("modal-body")[0]
-    let cartItemNames = modalBody.getElementsByClassName("cart-product-name")
-    for (let i = 0; i < cartItemNames.length; i++){
-        if(cartItemNames[i].innerText == name){
-            alert("Este producto ya esta en su carrito")
-            return
-        }
-    }
-    let rowContent = `
-                <hr>
-                <p class="cart-product-name w-100 text-center fw-bold">${name}</p>
-                <hr>
-                <div class="cart-product-info">
-                    <img class="product-img" src="${productImg}" alt="Imagen de Producto">
-                    <div class="product-unitPrice">
-                        <p class="text-center">Precio Unitario : </p>
-                        <p class="text-center price"id="price">${price}</p>
-                    </div>
-                    <div class="cart-products-quantity d-flex flex-column">
-                        <label for="cantidad" class="text-center cart-product-quantity-title">Cantidad de docenas</label>
-                        <input class="cart-quantity-input" type="number" id="cantidad" name="cantidad" min="1" max="10" value="1">
-                    </div>
-                </div>
-                <hr>
-                <div class="d-flex justify-content-center">
-                    <button class="btn btn-danger">Borrar</button>
-                </div>
-                <hr>`
-    row.innerHTML = rowContent
-    modalBody.appendChild(row)
-    row.getElementsByClassName("btn-danger")[0].addEventListener("click", removeCartItem)
-    row.getElementsByClassName("cart-quantity-input")[0].addEventListener("change", quantityChanged)
-    updateCartTotal()
-
 }
 
 // Objeto Producto (Not used yet)
@@ -147,33 +113,121 @@ function Product(id, name, price, discount){
 
 // Function to update the cart total price
 function updateCartTotal(){
-    let cartProductsContainer = document.getElementsByClassName("modal-body")[0]
-    let cartProductsInfo = cartProductsContainer.getElementsByClassName("cart-product")
+    let cartProductsInfo = document.getElementsByClassName("cart-product")
     let total = 0
     for (let i = 0; i < cartProductsInfo.length ; i++){
-        let cartProductInfo = cartProductsInfo[i]
-        let priceElement = cartProductInfo.getElementsByClassName("price")[0]
-        let quantitylElement = cartProductInfo.getElementsByClassName("cart-quantity-input")[0]
-        let price = parseFloat(priceElement.innerHTML.replace("$", ""))
+        let cart = JSON.parse(localStorage.getItem("cart"))
+        let product = cart.find(element => element.id == cartProductsInfo[i].id )
+        let quantitylElement = cartProductsInfo[i].getElementsByClassName("cart-quantity-input")[0]
         let quantity = parseFloat(quantitylElement.value)
-        total = total + (price * quantity)
+        product.quantity = quantity
+        cart[cart.findIndex(object => object.id === product.id)] = product;
+        localStorage.setItem("cart", JSON.stringify(cart))
+        total = total + (product.price * quantity)
     }
     document.getElementById("cart-total").innerText = "$" + total
-
-
 }
 
-// Cart purchase
+// Update cart (New)
+function checkCart(){
+    let cart = JSON.parse(localStorage.getItem("cart"))
+    if(!cart){
+        console.log("Carrito no existe, vamos a crearlo")
+        cart = []
+        localStorage.setItem("cart", JSON.stringify(cart))
+        return
+    }
+    else if(cart.length == 0){
+        console.log("Carrito Vacio")
+        return
+    }
+    console.log("Carrito tiene algo, vamos a cargarlo")
+    for(let i = 0; i < cart.length; i++){
+        addToCart2(cart[i])
+    }
+    console.log("Carrito creado")
+}
+
+// Cart purchase (New)
 function buyCartCicked(){
-    let cart = document.getElementsByClassName("modal-body")[0]
-    console.log(cart.hasChildNodes())
-    if (cart.hasChildNodes()){
-        while (cart.hasChildNodes()){
-            cart.removeChild(cart.firstChild)
+    let cart = JSON.parse(localStorage.getItem("cart"))
+    if (cart.length > 0){
+        while (document.getElementsByClassName("modal-body")[0].hasChildNodes()){
+            document.getElementsByClassName("modal-body")[0].removeChild(document.getElementsByClassName("modal-body")[0].firstChild)
         }
+        localStorage.removeItem("cart")
         alert("Muchas Gracias por su Compra !")
     }else{
         alert("El carrito esta vacio")
     }
+    checkCart();
     updateCartTotal();
+}
+
+function addToCartClick2(productContainer, products, cart){
+    let productId = productContainer.getAttribute('id')
+    let product = products.find(object => object.id === productId)
+    if(productCheck(cart, product)){
+        alert("Este producto ya esta en carrito")
+        return
+    }
+    addToCart2(product)
+       
+}
+
+function addToCart2(product){
+    let row = document.createElement("div")
+    row.classList = "cart-product";
+    row.setAttribute("id", product.id)
+    product = checkProductPrice(product)
+    let rowContent = `
+                <hr>
+                <p class="cart-product-name w-100 text-center fw-bold">${product.name}</p>
+                <hr>
+                <div class="cart-product-info">
+                    <img class="product-img" src="${product.src1}" alt="Imagen de Producto">
+                    <div class="product-unitPrice">
+                        <p class="text-center">Precio Unitario : </p>
+                        <p class="text-center price"id="price">${product.price}</p>
+                    </div>
+                    <div class="cart-products-quantity d-flex flex-column">
+                        <label for="cantidad" class="text-center cart-product-quantity-title">Cantidad de docenas</label>
+                        <input class="cart-quantity-input" type="number" id="cantidad" name="cantidad" min="1" max="10" value="1">
+                    </div>
+                </div>
+                <hr>
+                <div class="d-flex justify-content-center">
+                    <button class="btn btn-danger">Borrar</button>
+                </div>
+                <hr>`
+    row.innerHTML = rowContent
+    let modalBody = document.getElementsByClassName("modal-body")[0]
+    modalBody.appendChild(row)
+    row.getElementsByClassName("btn-danger")[0].addEventListener("click", removeCartItem)
+    row.getElementsByClassName("cart-quantity-input")[0].addEventListener("change", quantityChanged)
+    let cart = JSON.parse(localStorage.getItem("cart"))
+    if(cart.find(element => element.id === product.id)){
+        updateCartTotal()
+        return
+    }
+    cart.push(product)
+    localStorage.setItem("cart", JSON.stringify(cart))
+    updateCartTotal()
+}
+
+function productCheck(array, element){
+    for(let i = 0; i < array.length; i++){
+        if(array[i].id === element.id){
+            return true
+        }
+    }
+    return false
+}
+
+function checkProductPrice(product){
+    if(product.discount > 0){
+        product.price = product.price - (product.price * product.discount / 100)
+        delete product.discount;
+    }
+    return product
 }
