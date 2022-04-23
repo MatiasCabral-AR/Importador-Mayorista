@@ -1,0 +1,1 @@
+document.readyState == 'loading' ? document.addEventListener('DOMContentLoaded', main) : main()
