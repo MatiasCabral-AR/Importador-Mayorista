@@ -1,9 +1,9 @@
-// Fires main.js ONLY when all the DOM content is loaded (images and stylesheets not included)
-document.readyState == 'loading' ? document.addEventListener('DOMContentLoaded', main) : main()
+// This JavaScript file includes functions of common use to all .js files in this proyect
 
+// main() function. Execute everything
 function main(){
     // Check cart
-    console.log("Pagina Cargada")
+    
     checkCart();
     // Delete cart product Event Listener
     const deleteProduct = document.getElementsByClassName("btn-danger");
@@ -21,12 +21,10 @@ function main(){
     }
     // Buy cart button Event Listener
     document.getElementsByClassName("btn-primary")[0].addEventListener("click", buyCartCicked);
+    console.log("main() finalizada")
 }
 
-// Function add content to all Product <div>
-
-
-// Remove cart item function
+// Remove cart item from <modal> and from cart array
 function removeCartItem(event){
     let buttonClicked = event.target
     let productId = buttonClicked.parentElement.parentElement.id
@@ -34,28 +32,16 @@ function removeCartItem(event){
     let cart = JSON.parse(localStorage.getItem("cart"))
     cart = cart.filter(product => product.id !== productId)
     localStorage.setItem("cart", JSON.stringify(cart))
-    console.log("Boton Borrar presionado")
     updateCartTotal()
 }
-
-// Cart Item quantity update 
+// Cart Item quantity check (check if <input> value is not anything else than a positive value and corrects it)
 function quantityChanged(input){
     if (isNaN(input.value) || input.value <= 0){
         input.value = 1;
     }
     updateCartTotal()
 }
-
-// Objeto Producto (Not used yet)
-function Product(id, name, price, discount){
-    this.id = id;
-    this.name = name;
-    this.price = price;
-    this.discount = discount;
-    this.salePrice = () => this.price - (this.price * this.discount / 100)
-}
-
-// Function to update the cart total price
+// Function to update the cart total price (inside Modal and "coming soon" in totalCart value inside localStorage)
 function updateCartTotal(){
     let cartProductsInfo = document.getElementsByClassName("cart-product")
     let total = 0
@@ -121,3 +107,5 @@ function checkProductPrice(product){
     }
     return product
 }
+
+export {main, removeCartItem, quantityChanged, updateCartTotal, checkCart, buyCartCicked, productCheck, checkProductPrice}

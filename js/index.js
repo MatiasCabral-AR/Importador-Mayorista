@@ -1,10 +1,13 @@
 // Fires index.js ONLY when all the DOM content is loaded (images and stylesheets not included)
-document.readyState == 'loading' ? document.addEventListener('DOMContentLoaded', main) : main()
-
+document.readyState == 'loading' ? document.addEventListener('DOMContentLoaded', main) : indexMain()
+// Importing ALL functions from main.js
+import {main, removeCartItem, quantityChanged, updateCartTotal, checkCart, buyCartCicked, productCheck, checkProductPrice} from "./main.js";
 
 //----------------------------- Main Function -----------------------------
 
-function main(){
+function indexMain(){
+    // Run main() function from main.js 
+    main()
     // Create products in HTML based on data from data.js
     let productsGrid = document.getElementsByClassName("product-grid")
     for (let i = 0; i < productsGrid.length; i++){
