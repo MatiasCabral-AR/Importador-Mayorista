@@ -70,7 +70,7 @@ function checkCart(){
         return
     }
     for(let i = 0; i < cart.length; i++){
-        addToCart2(cart[i])
+        addToCart(cart[i])
     }
     console.log("Carrito creado")
 }

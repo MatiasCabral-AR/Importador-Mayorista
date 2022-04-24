@@ -3,39 +3,6 @@ document.readyState == 'loading' ? document.addEventListener('DOMContentLoaded',
 // Importing ALL functions from main.js
 import {main, removeCartItem, quantityChanged, updateCartTotal, checkCart, buyCartCicked, productCheck, checkProductPrice} from "./main.js";
 
-//----------------------------- Main Function -----------------------------
-
-function indexMain(){
-    // Run main() function from main.js 
-    main()
-    // Create products in HTML based on data from data.js
-    let productsGrid = document.getElementsByClassName("product-grid")
-    for (let i = 0; i < productsGrid.length; i++){
-        let products = JSON.parse(localStorage.getItem("products"))
-        let product = productsGrid[i]
-        product.setAttribute('id', products[i].id)
-        productCreation(product, products[i])
-    }
-    // Event Listener for Add to Cart button in every product
-    let addToCartButtons = document.getElementsByClassName("add-cart")
-    for (let i = 0; i < addToCartButtons.length; i++){
-        let button = addToCartButtons[i]
-        let productContainer = button.parentElement.parentElement.parentElement
-        button.addEventListener("click", function(){
-            addToCartClick(productContainer, JSON.parse(localStorage.getItem("products")), JSON.parse(localStorage.getItem("cart")))
-        })
-    }
-    // Event Listener for Show Product button in every product
-    let productShowButton = document.getElementsByClassName("product-show")
-    for (let i = 0; i < productShowButton.length ; i++){
-        let button = productShowButton[i]
-        let productId = button.parentElement.parentElement.parentElement.id
-        button.addEventListener("click", ()=>{
-            localStorage.setItem("productData", productId)
-        })
-    }
-}
-
 //----------------------------- index.js Core Functions -----------------------------
 
 // HTML Product Creation
@@ -153,4 +120,37 @@ function addToCart(product){
     cart.push(product)
     localStorage.setItem("cart", JSON.stringify(cart))
     updateCartTotal()
+}
+
+//----------------------------- Main Function -----------------------------
+
+function indexMain(){
+    // Run main() function from main.js 
+    main()
+    // Create products in HTML based on data from data.js
+    let productsGrid = document.getElementsByClassName("product-grid")
+    for (let i = 0; i < productsGrid.length; i++){
+        let products = JSON.parse(localStorage.getItem("products"))
+        let product = productsGrid[i]
+        product.setAttribute('id', products[i].id)
+        productCreation(product, products[i])
+    }
+    // Event Listener for Add to Cart button in every product
+    let addToCartButtons = document.getElementsByClassName("add-cart")
+    for (let i = 0; i < addToCartButtons.length; i++){
+        let button = addToCartButtons[i]
+        let productContainer = button.parentElement.parentElement.parentElement
+        button.addEventListener("click", function(){
+            addToCartClick(productContainer, JSON.parse(localStorage.getItem("products")), JSON.parse(localStorage.getItem("cart")))
+        })
+    }
+    // Event Listener for Show Product button in every product
+    let productShowButton = document.getElementsByClassName("product-show")
+    for (let i = 0; i < productShowButton.length ; i++){
+        let button = productShowButton[i]
+        let productId = button.parentElement.parentElement.parentElement.id
+        button.addEventListener("click", ()=>{
+            localStorage.setItem("productData", productId)
+        })
+    }
 }
