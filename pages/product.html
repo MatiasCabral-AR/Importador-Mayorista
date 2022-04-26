@@ -10,9 +10,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <script src="https://kit.fontawesome.com/77868dd7b9.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="stylesheet" href="../css/main.css">
     <script src="../js/data.js" async></script>
-    <script src="../js/main.js" async></script>
+    <script type="module" src="../js/product.js"></script>
     <title>Producto - Imp. Mayorista</title>
 </head>
 <body>
@@ -36,28 +37,18 @@
     </header>
     <main>
         <section class="container d-flex flex-wrap flex-row justify-content-center product-container">
-            <article class="product-container-img mx-auto"> 
-                <img src="../resources/img/product-images/soquete-h1.jpg" alt="">
-            </article>
-            <article class="mx-auto">
-              <p class="text-center">Docena Soquete</p>
-              <p class="text-center">$1000</p>
-              <p class="text-center">Medias Alto-max - 65% Algodon, 35% Polyester</p>
-              <p class="text-center">Talles del 34 al 43</p>
-              <p class="text-center">Los colores en la docena son surtidos</p>
-              <hr>
-              <div>
-                <ul class="text-center list-unstyled">
-                  Comprando mas de 10 docenas EN TOTAL de PRODUCTOS SURTIDOS,<br>
-                  el precio por docena de este producto sera de : 
-                  <li>+10 docenas : $700</li>
-                  <li>+30 docenas : $680</li>
-                  <li>+50 docenas : $650</li>
-                  <li>+120 docenas : $600</li>
-                </ul>
-              </div>
+            <article class="product-img mx-auto"></article>
+            <article class="mx-auto product-info">
+              <p class="product-name text-center">Docena Soquete</p>
+              <p class="product-price text-center">$1000</p>
+              <p class="product-description text-center">Medias Alto-max - 65% Algodon, 35% Polyester</p>
+              <p class="product-sizes text-center">Talles del 34 al 43</p>
+              <p class="text-center">Los colores y talles en la docena son surtidos</p>
               <hr>
               <p class="text-center">Comprando mas de 10 docenas.<br>Envio a domicilio gratis dentro de Cordoba Capital.</p>
+              <div class="text-center">
+                <button class="btn btn-secondary">Agregar al carrito</button>
+              </div>
             </article>
         </section>
         <section class="container-fluid bar mt-5">
@@ -129,6 +120,8 @@
     <a class="text-dark" href=""><i class="fa-brands fa-whatsapp fa-2xl me-3"></i></a>
     <a class="text-dark" href=""><i class="fa-brands fa-facebook fa-2xl me-3"></i></a>
     <a class="text-dark" href=""><i class="fa-brands fa-instagram fa-2xl me-2"></i></a>     
-</div>
+  </div>
+  <!-- Scripts -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 </body>
 </html>

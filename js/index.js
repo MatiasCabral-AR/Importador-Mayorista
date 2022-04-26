@@ -1,7 +1,7 @@
+// Importing ALL functions from main.js
+import {main, removeCartItem, quantityChanged, updateCartTotal, checkCart, buyCartCicked, productCheck, checkProductPrice, addToCart, addToCartClick} from "./main.js";
 // Fires index.js ONLY when all the DOM content is loaded (images and stylesheets not included)
 document.readyState == 'loading' ? document.addEventListener('DOMContentLoaded', main) : indexMain()
-// Importing ALL functions from main.js
-import {main, removeCartItem, quantityChanged, updateCartTotal, checkCart, buyCartCicked, productCheck, checkProductPrice} from "./main.js";
 
 //----------------------------- index.js Core Functions -----------------------------
 
@@ -40,93 +40,14 @@ function productCreation(product, products){
                         </div>`
     product.innerHTML = productContent
 }
-// Add to Cart Button "click" (get Product by Id, Toastify Notification & run addToCart function)
-function addToCartClick(productContainer, products, cart){
-    let productId = productContainer.getAttribute('id')
-    let product = products.find(object => object.id === productId)
-    if(productCheck(cart, product)){
-        Toastify({
-            text : "Este producto ya esta en carrito",
-            duration : 1500 ,
-            gravity : "top",
-            position : "center",
-            offset : {
-                y : "2rem"
-            },
-            style : {
-                background : "red",
-                color : "black",
-                fontWeight : "500",
-            }
-
-        }).showToast();
-        return
-    }
-    Toastify({
-        text : "Producto agregado a carrito",
-        duration : 1500 ,
-        gravity : "top",
-        position : "center",
-        offset :{
-            y : "2rem"
-        },
-        style : {
-            background : "rgb(255,222,89)",
-            color : "black",
-            fontWeight : "500",
-            
-        }
-
-    }).showToast();
-    addToCart(product)       
-}
-// Add to Cart (Full Product <div> creation inside Modal, update localStorage "cart" array)
-function addToCart(product){
-    let row = document.createElement("div")
-    row.classList = "cart-product";
-    row.setAttribute("id", product.id)
-    product = checkProductPrice(product)
-    let rowContent = `
-                <hr>
-                <p class="cart-product-name w-100 text-center fw-bold">${product.name}</p>
-                <hr>
-                <div class="cart-product-info">
-                    <img class="product-img" src="${product.src1}" alt="Imagen de Producto">
-                    <div class="product-unitPrice">
-                        <p class="text-center">Precio Unitario : </p>
-                        <p class="text-center price"id="price">${product.price}</p>
-                    </div>
-                    <div class="cart-products-quantity d-flex flex-column">
-                        <label for="cantidad" class="text-center cart-product-quantity-title">Cantidad de docenas</label>
-                        <input class="cart-quantity-input" type="number" id="cantidad" name="cantidad" min="1" max="10" value="1">
-                    </div>
-                </div>
-                <hr>
-                <div class="d-flex justify-content-center">
-                    <button class="btn btn-danger">Borrar</button>
-                </div>
-                <hr>`
-    row.innerHTML = rowContent
-    let modalBody = document.getElementsByClassName("modal-body")[0]
-    modalBody.appendChild(row)
-    row.getElementsByClassName("btn-danger")[0].addEventListener("click", removeCartItem)
-    row.getElementsByClassName("cart-quantity-input")[0].addEventListener("change", quantityChanged)
-    let cart = JSON.parse(localStorage.getItem("cart"))
-    // NEED to check !! , addToCartClick have a Toastify Notification and uses productCheck() that does the same.
-    if(cart.find(element => element.id === product.id)){
-        updateCartTotal()
-        return
-    }
-    cart.push(product)
-    localStorage.setItem("cart", JSON.stringify(cart))
-    updateCartTotal()
-}
 
 //----------------------------- Main Function -----------------------------
 
 function indexMain(){
     // Run main() function from main.js 
     main()
+    // Clear localStorage "productData"
+    localStorage.removeItem("productData") 
     // Create products in HTML based on data from data.js
     let productsGrid = document.getElementsByClassName("product-grid")
     for (let i = 0; i < productsGrid.length; i++){
@@ -139,9 +60,10 @@ function indexMain(){
     let addToCartButtons = document.getElementsByClassName("add-cart")
     for (let i = 0; i < addToCartButtons.length; i++){
         let button = addToCartButtons[i]
-        let productContainer = button.parentElement.parentElement.parentElement
+        let productId = button.parentElement.parentElement.parentElement.getAttribute("id")
         button.addEventListener("click", function(){
-            addToCartClick(productContainer, JSON.parse(localStorage.getItem("products")), JSON.parse(localStorage.getItem("cart")))
+            let product = productos.find(object => object.id == productId)
+            addToCartClick(product, JSON.parse(localStorage.getItem("cart")))
         })
     }
     // Event Listener for Show Product button in every product
