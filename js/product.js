@@ -1,5 +1,5 @@
 // Importing ALL functions from main.js
-import {main, removeCartItem, quantityChanged, updateCartTotal, checkCart, buyCartCicked, productCheck, checkProductPrice, addToCart, addToCartClick} from "./main.js";
+import {main, removeCartItem, quantityChanged, updateCartTotal, checkCart, buyCartCicked, productCheck, checkProductPrice, addToCart, addToCartClick, dollarBlue, showDollar} from "./main.js";
 // Fires product.js ONLY when all the DOM content is loaded (images and stylesheets not included)
 document.readyState == 'loading' ? document.addEventListener('DOMContentLoaded', main) : productMain()
 
@@ -17,6 +17,7 @@ function loadProduct(id){
 
 function productMain(){
     main()
+    dollarBlue(document.getElementsByClassName("oficial"), document.getElementsByClassName("blue"))
     let productId = localStorage.getItem("productData")
     let product = loadProduct(productId)
     document.getElementsByClassName("btn-secondary")[0].addEventListener("click", () => {

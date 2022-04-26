@@ -1,5 +1,5 @@
 // Importing ALL functions from main.js
-import {main, removeCartItem, quantityChanged, updateCartTotal, checkCart, buyCartCicked, productCheck, checkProductPrice, addToCart, addToCartClick} from "./main.js";
+import {main, removeCartItem, quantityChanged, updateCartTotal, checkCart, buyCartCicked, productCheck, checkProductPrice, addToCart, addToCartClick, dollarBlue, showDollar} from "./main.js";
 // Fires index.js ONLY when all the DOM content is loaded (images and stylesheets not included)
 document.readyState == 'loading' ? document.addEventListener('DOMContentLoaded', main) : indexMain()
 
@@ -46,6 +46,7 @@ function productCreation(product, products){
 function indexMain(){
     // Run main() function from main.js 
     main()
+    dollarBlue(document.getElementsByClassName("oficial"), document.getElementsByClassName("blue"))
     // Clear localStorage "productData"
     localStorage.removeItem("productData") 
     // Create products in HTML based on data from data.js

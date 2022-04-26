@@ -83,9 +83,37 @@ export function buyCartCicked(){
             document.getElementsByClassName("modal-body")[0].removeChild(document.getElementsByClassName("modal-body")[0].firstChild)
         }
         localStorage.removeItem("cart")
-        alert("Muchas Gracias por su Compra !")
+        Toastify({
+            text : "Muchas Gracias por su compra !",
+            duration : 1500 ,
+            gravity : "top",
+            position : "center",
+            offset : {
+                y : "2rem"
+            },
+            style : {
+                background : "green",
+                color : "black",
+                fontWeight : "500",
+            }
+
+        }).showToast();
     }else{
-        alert("El carrito esta vacio")
+        Toastify({
+            text : "El carrito esta vacio.",
+            duration : 1500 ,
+            gravity : "top",
+            position : "center",
+            offset : {
+                y : "2rem"
+            },
+            style : {
+                background : "red",
+                color : "black",
+                fontWeight : "500",
+            }
+
+        }).showToast();
     }
     checkCart();
     updateCartTotal();
@@ -187,3 +215,12 @@ export function addToCartClick(product, cart){
     addToCart(product)       
 }
 //export {main, removeCartItem, quantityChanged, updateCartTotal, checkCart, buyCartCicked, productCheck, checkProductPrice}
+export function dollarBlue(oficial, blue){
+    fetch("https://api.bluelytics.com.ar/v2/latest")
+    .then(response => response.json())
+    .then((json) => {showDollar(json, oficial, blue)})
+}
+export function showDollar(object, oficial, blue){
+    oficial[0].innerHTML = `Dolar Oficial Venta : $ ${object.oficial.value_sell}`
+    blue[0].innerHTML = `Dolar Blue Venta : $ ${object.blue.value_sell}`
+}
