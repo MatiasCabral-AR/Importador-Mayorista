@@ -6,39 +6,41 @@ document.readyState == 'loading' ? document.addEventListener('DOMContentLoaded',
 //----------------------------- index.js Core Functions -----------------------------
 
 // HTML Product Creation
-function productCreation(product, products){
-    let price = products.price
+function productCreation(productRow, product){
+    let price = product.price
     let discount = ""
     let spanClass = "d-none"
     let realPrice = ""
-    if (parseInt(products.discount) > 0){
-        discount = `% ${products.discount}`
+    if (parseInt(product.discount) > 0){
+        discount = `% ${product.discount}`
         spanClass = "" 
         realPrice = `$${price}`
-        price = parseInt(products.price) - (parseInt(products.price) * parseInt(products.discount) / 100)
+        price = parseInt(product.price) - (parseInt(product.price) * parseInt(product.discount) / 100)
     }
     let productContent = `
-                        <div class="product-image">
-                            <a href="javascript:void(0)">
-                                <img class="pic-1" alt="Imagen de Producto" src="${products.src1}">
-                                <img class="pic-2" alt="Imagen de Producto" src="${products.src2}">
-                            </a>
-                            <div class="product-buy w-100 d-flex justify-content-center align-items-center position-absolute">
-                            <a href="pages/product.html" data-tip="Ver Producto" class="product-show d-flex justify-content-center align-items-center">
-                                <i class="fas fa-search text-dark ver"></i>
-                            </a>
-                            <a class="add-cart" href="javascript:void(0)" data-tip="Agregar a Carrito" class="d-flex justify-content-center align-items-center">
-                                <i class="fas fa-shopping-cart text-dark agregar"></i>
-                            </a>
-                            </div> 
-                            <span class="product-new-label ${spanClass}">Sale</span>
-                            <span class="product-discount-label ${spanClass}">${discount}</span>
-                        </div>
-                        <div class="product-content">
-                            <p class="title"><a href="pages/shop/product.html">${products.name}</a></p>
-                            <div class="price">${price}<span class="discount">${realPrice}</span></div>
-                        </div>`
-    product.innerHTML = productContent
+            <div class="product-grid col-md-3 col-sm-6 mb-1 " id="${product.id}" >
+                <div class="product-image">
+                    <a href="javascript:void(0)">
+                        <img class="pic-1" alt="Imagen de Producto" src="${product.src1}">
+                        <img class="pic-2" alt="Imagen de Producto" src="${product.src2}">
+                    </a>
+                    <div class="product-buy w-100 d-flex justify-content-center align-items-center position-absolute">
+                        <a href="pages/product.html" data-tip="Ver Producto" class="product-show d-flex justify-content-center align-items-center">
+                            <i class="fas fa-search text-dark ver"></i>
+                        </a>
+                        <a class="add-cart" href="javascript:void(0)" data-tip="Agregar a Carrito" class="d-flex justify-content-center align-items-center">
+                            <i class="fas fa-shopping-cart text-dark agregar"></i>
+                        </a>
+                    </div> 
+                    <span class="product-new-label ${spanClass}">Sale</span>
+                    <span class="product-discount-label ${spanClass}">${discount}</span>
+                </div>
+                <div class="product-content">
+                    <p class="title"><a href="pages/shop/product.html">${product.name}</a></p>
+                    <div class="price">${price}<span class="discount">${realPrice}</span></div>
+                </div>
+            </div>`
+    productRow.innerHTML += productContent
 }
 
 //----------------------------- Main Function -----------------------------
@@ -46,16 +48,17 @@ function productCreation(product, products){
 function indexMain(){
     // Run main() function from main.js 
     main()
-    dollarBlue(document.getElementsByClassName("oficial"), document.getElementsByClassName("blue"))
+    dollarBlue(document.getElementsByClassName("oficialCompra"), document.getElementsByClassName("oficialVenta"), 
+    document.getElementsByClassName("blueCompra"), document.getElementsByClassName("blueVenta"))
     // Clear localStorage "productData"
     localStorage.removeItem("productData") 
     // Create products in HTML based on data from data.js
-    let productsGrid = document.getElementsByClassName("product-grid")
-    for (let i = 0; i < productsGrid.length; i++){
-        let products = JSON.parse(localStorage.getItem("products"))
-        let product = productsGrid[i]
-        product.setAttribute('id', products[i].id)
-        productCreation(product, products[i])
+    let productRow = document.getElementById("productRow")
+    let productsArray = JSON.parse(localStorage.getItem("products"))
+    for (let i = 0; i < productsArray.length; i++){
+        console.log(productRow)
+        let product = productsArray[i]
+        productCreation(productRow, product)
     }
     // Event Listener for Add to Cart button in every product
     let addToCartButtons = document.getElementsByClassName("add-cart")

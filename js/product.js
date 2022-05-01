@@ -17,7 +17,8 @@ function loadProduct(id){
 
 function productMain(){
     main()
-    dollarBlue(document.getElementsByClassName("oficial"), document.getElementsByClassName("blue"))
+    dollarBlue(document.getElementsByClassName("oficialCompra"), document.getElementsByClassName("oficialVenta"), 
+    document.getElementsByClassName("blueCompra"), document.getElementsByClassName("blueVenta"))
     let productId = localStorage.getItem("productData")
     let product = loadProduct(productId)
     document.getElementsByClassName("btn-secondary")[0].addEventListener("click", () => {

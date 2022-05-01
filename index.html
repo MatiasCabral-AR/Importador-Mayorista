@@ -39,9 +39,7 @@
     <main>
         <section class="presentation container">
             <article class="presentation-logo">
-                <div class="container-fluid shop-logo d-flex align-items-center justify-content-center">
-                    <img src="resources/img/logo.jpg" alt="">
-                </div>
+                <img class="mx-auto d-block img-fluid"src="resources/img/logo.jpg" alt="">
             </article>
             <article class="presentation-text">
                 <div class="d-flex flex-column justify-content-center align-items-center">
@@ -65,7 +63,6 @@
                           <h5 class="">Ropa Interior Femenina</h5>
                           <p>Vedetinas de Algodon con Lycra</p>
                         </div>
-
                       </div>
                       <div class="carousel-item" data-bs-interval="2000">
                         <img src="resources/img/slider-background.png" class="d-block w-100" alt="...">
@@ -95,49 +92,8 @@
             <!-- Contenedor de Productos -->
             <article class="products-container mt-5">
                 <p class="products-container-title text-center">Nuestros Productos</p>
-                <div class="row">
-                  <div class="col-md-3 col-sm-6 mb-1">
-                    <div class="product-grid">
-                         <!-- Producto 1 -->
-                    </div>
-                  </div>
-                  <div class="col-md-3 col-sm-6 mb-1">
-                    <div class="product-grid">
-                         <!-- Producto 2 -->
-                    </div>
-                  </div>
-                  <div class="col-md-3 col-sm-6 mb-1">
-                    <div class="product-grid">
-                         <!-- Producto 3 -->
-                    </div>
-                  </div>
-                  <div class="col-md-3 col-sm-6 mb-1">
-                    <div class="product-grid">
-                         <!-- Producto 4 -->
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-3 col-sm-6 mb-1">
-                    <div class="product-grid">
-                         <!-- Producto 5 -->
-                    </div>
-                  </div>
-                  <div class="col-md-3 col-sm-6 mb-1">
-                    <div class="product-grid">
-                         <!-- Producto 6 -->
-                    </div>
-                  </div>
-                  <div class="col-md-3 col-sm-6 mb-1">
-                    <div class="product-grid">
-                         <!-- Producto 7 -->
-                    </div>
-                  </div>
-                  <div class="col-md-3 col-sm-6 mb-1">
-                    <div class="product-grid">
-                         <!-- Producto 8 -->
-                    </div>
-                  </div>
+                <div class="row" id="productRow">
+                  <!-- Products -->
                 </div>
             </article>
         </section>
@@ -153,17 +109,38 @@
               <div class="modal-footer">
                 <p class="mx-auto fw-bold">Total Compra : <span class="fw-normal" id="cart-total">$ 0</span></p>
                 <div class="modal-buttons">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                  <button type="button" class="btn btn-danger">Borrar Carrito</button>
                   <button type="button" class="btn btn-primary">Comprar</button>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="row bg-warning">
-          <p class="blue text-dark text-center display-4"></p>
-          <p class="oficial text-dark text-center display-4"></p>
-        </div>
+        <!-- Cotizacion Dolar del dia-->
+        <section class="my-2">
+          <p class="title text-center bg-dark text-light">Cotizacion del Dolar</p>
+          <table class="w-100 dollarTable table table-dark table-stripped table-hover">
+            <thead>
+              <tr>
+                <td scope="col" class="text-center pe-none">#</td>
+                <th scope="col" class="text-center pe-none">Compra</th>
+                <th scope="col" class="text-center pe-none">Venta</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row" class="text-center user-select-none">Blue</th>
+                <td class="text-center blueCompra user-select-none">Compra Blue</td>
+                <td class="text-center blueVenta user-select-none">Venta Blue</td>
+              </tr>
+              <tr>
+                <th scope="row" class="text-center user-select-none">Oficial</th>
+                <td class="text-center oficialCompra user-select-none">Compra Oficial</td>
+                <td class="text-center oficialVenta user-select-none">Venta Oficial</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
         <!-- Barra inferior -->
         <section class="row bar mx-auto">
             <div class="d-flex bar-item justify-content-center align-items-center">
@@ -212,12 +189,12 @@
     </footer>
     <div class="fixed-bottom d-flex justify-content-end mb-3">
         <a data-bs-toggle="modal" data-bs-target="#exampleModal" class="text-decoration-none text-dark" href="#modal"><i class="fas fa-shopping-cart fa-2xl me-3"></i></a>
-        <a class="text-dark" href=""><i class="fa-brands fa-whatsapp fa-2xl me-3"></i></a>
+        <a class="text-dark" href="https://wa.me/543512693361?text=Queria%20consultar%20por%20los%20productos%20de%20tu%20pagina."><i class="fa-brands fa-whatsapp fa-2xl me-3"></i></a>
         <a class="text-dark" href=""><i class="fa-brands fa-facebook fa-2xl me-3"></i></a>
         <a class="text-dark" href=""><i class="fa-brands fa-instagram fa-2xl me-2"></i></a>     
     </div>
-    
     <!-- Scripts -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>

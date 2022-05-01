@@ -1,12 +1,10 @@
 // This JavaScript file includes functions of common use to all .js files in this proyect
-
-// main() function. Execute everything
+//----------------------------- Main Function -----------------------------
 export function main(){
     // Check cart
-    
     checkCart();
     // Delete cart product Event Listener
-    const deleteProduct = document.getElementsByClassName("btn-danger");
+    const deleteProduct = document.getElementsByClassName("btn-outline-danger");
     for (let i = 0; i < deleteProduct.length; i++){
         let button = deleteProduct[i]
         button.addEventListener("click",removeCartItem)
@@ -21,8 +19,11 @@ export function main(){
     }
     // Buy cart button Event Listener
     document.getElementsByClassName("btn-primary")[0].addEventListener("click", buyCartCicked);
-    console.log("main() finalizada")
+    // Delete cart button Event listener
+    //document.getElementsByClassName("btn-danger")[0].addEventListener("click", deleteCart)
 }
+
+//----------------------------- main.js Core Functions -----------------------------
 
 // Remove cart item from <modal> and from cart array
 export function removeCartItem(event){
@@ -32,6 +33,7 @@ export function removeCartItem(event){
     let cart = JSON.parse(localStorage.getItem("cart"))
     cart = cart.filter(product => product.id !== productId)
     localStorage.setItem("cart", JSON.stringify(cart))
+    showToastify("Producto eliminado", "red")
     updateCartTotal()
 }
 // Cart Item quantity check (check if <input> value is not anything else than a positive value and corrects it)
@@ -58,7 +60,7 @@ export function updateCartTotal(){
     document.getElementById("cart-total").innerText = "$" + total
 }
 
-// Update cart (New)
+// Create an empty cart in localStorage if this does not exist, and if it exist load it in modal
 export function checkCart(){
     let cart = JSON.parse(localStorage.getItem("cart"))
     if(!cart){
@@ -75,7 +77,7 @@ export function checkCart(){
     console.log("Carrito creado")
 }
 
-// Cart purchase (New)
+// Cart purchase button function (delete all items in cart (modal and localStorage), and show alert)
 export function buyCartCicked(){
     let cart = JSON.parse(localStorage.getItem("cart"))
     if (cart.length > 0){
@@ -118,7 +120,7 @@ export function buyCartCicked(){
     checkCart();
     updateCartTotal();
 }
-
+// Check if a Product is inside an Array by checking his Id
 export function productCheck(array, element){
     for(let i = 0; i < array.length; i++){
         if(array[i].id === element.id){
@@ -127,7 +129,7 @@ export function productCheck(array, element){
     }
     return false
 }
-
+// Apply discount to the price of a product Object if it has a discount attribute > 0
 export function checkProductPrice(product){
     if(product.discount > 0){
         product.price = product.price - (product.price * product.discount / 100)
@@ -158,13 +160,13 @@ export function addToCart(product){
                 </div>
                 <hr>
                 <div class="d-flex justify-content-center">
-                    <button class="btn btn-danger">Borrar</button>
+                    <button class="btn btn-outline-danger">Borrar Articulo</button>
                 </div>
                 <hr>`
     row.innerHTML = rowContent
     let modalBody = document.getElementsByClassName("modal-body")[0]
     modalBody.appendChild(row)
-    row.getElementsByClassName("btn-danger")[0].addEventListener("click", removeCartItem)
+    row.getElementsByClassName("btn-outline-danger")[0].addEventListener("click", removeCartItem)
     row.getElementsByClassName("cart-quantity-input")[0].addEventListener("change", quantityChanged)
     let cart = JSON.parse(localStorage.getItem("cart"))
     // NEED to check !! , addToCartClick have a Toastify Notification and uses productCheck() that does the same.
@@ -179,25 +181,29 @@ export function addToCart(product){
 // Add to Cart Button "click" (get Product by Id, Toastify Notification & run addToCart function)
 export function addToCartClick(product, cart){
     if(productCheck(cart, product)){
-        Toastify({
-            text : "Este producto ya esta en carrito",
-            duration : 1500 ,
-            gravity : "top",
-            position : "center",
-            offset : {
-                y : "2rem"
-            },
-            style : {
-                background : "red",
-                color : "black",
-                fontWeight : "500",
-            }
-
-        }).showToast();
+        showToastify("Este producto ya esta en el carrito", "red")
         return
     }
+    showToastify("Producto agregado al carrito", "lightgreen")
+    addToCart(product)       
+}
+// Fetching dollar value through API and executing showDollar
+export function dollarBlue(oficialCompra, oficialVenta, blueCompra, blueVenta){
+    fetch("https://api.bluelytics.com.ar/v2/latest")
+    .then(response => response.json())
+    .then((json) => {showDollar(json, oficialCompra, oficialVenta, blueCompra, blueVenta)})
+}
+// Get dollar values from API and insert them into DOM
+export function showDollar(object, oficialCompra, oficialVenta, blueCompra, blueVenta){
+    oficialCompra[0].innerHTML = `$ ${object.oficial.value_buy}`
+    oficialVenta[0].innerHTML = `$ ${object.oficial.value_sell}`
+    blueCompra[0].innerHTML = `$ ${object.blue.value_buy}`
+    blueVenta[0].innerHTML = `$ ${object.blue.value_sell}`
+}
+// Show Toastify function
+export function showToastify(msj, background){
     Toastify({
-        text : "Producto agregado a carrito",
+        text : msj,
         duration : 1500 ,
         gravity : "top",
         position : "center",
@@ -205,22 +211,20 @@ export function addToCartClick(product, cart){
             y : "2rem"
         },
         style : {
-            background : "rgb(255,222,89)",
+            background : background,
             color : "black",
             fontWeight : "500",
             
         }
 
     }).showToast();
-    addToCart(product)       
 }
-//export {main, removeCartItem, quantityChanged, updateCartTotal, checkCart, buyCartCicked, productCheck, checkProductPrice}
-export function dollarBlue(oficial, blue){
-    fetch("https://api.bluelytics.com.ar/v2/latest")
-    .then(response => response.json())
-    .then((json) => {showDollar(json, oficial, blue)})
+
+export function showAlert(icon, title, text){
+    
 }
-export function showDollar(object, oficial, blue){
-    oficial[0].innerHTML = `Dolar Oficial Venta : $ ${object.oficial.value_sell}`
-    blue[0].innerHTML = `Dolar Blue Venta : $ ${object.blue.value_sell}`
+
+export function deleteCart(){
+
 }
+

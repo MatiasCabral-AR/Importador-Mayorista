@@ -2,7 +2,7 @@
 /* Colors map */
 /* Function to get color */
 /* Label styling to @extend into other classes */
-.lbl, body main .products .products-container .row div .product-grid .product-image .product-discount-label, body main .products .products-container .row div .product-grid .product-image .product-new-label {
+.lbl, body main .products .products-container .row .product-grid .product-image .product-discount-label, body main .products .products-container .row .product-grid .product-image .product-new-label {
   color: #fff;
   font-size: 1rem;
   padding: .1rem .3rem;
@@ -45,18 +45,18 @@ body {
     font-size: 2rem;
     font-weight: 500;
     text-align: center; }
-  body main .products .products-container .row div .product-grid {
+  body main .products .products-container .row .product-grid {
     text-align: center;
     padding: 0 0 5rem;
     border: 2px solid #FCCC0D;
     overflow: hidden;
     position: relative;
     z-index: 1; }
-    body main .products .products-container .row div .product-grid:hover .product-buy {
+    body main .products .products-container .row .product-grid:hover .product-buy {
       transform: translateY(-3rem);
       transition: all .2s ease-out 0s;
       opacity: 1; }
-      body main .products .products-container .row div .product-grid:hover .product-buy a::before {
+      body main .products .products-container .row .product-grid:hover .product-buy a::before {
         content: attr(data-tip);
         font-size: small;
         padding: 2px;
@@ -68,27 +68,27 @@ body {
         pointer-events: none;
         color: #000;
         background-color: rgba(235, 213, 127, 0.8); }
-      body main .products .products-container .row div .product-grid:hover .product-buy a:hover::before {
+      body main .products .products-container .row .product-grid:hover .product-buy a:hover::before {
         transform: translateY(-2rem);
         opacity: 1; }
-    body main .products .products-container .row div .product-grid:hover .product-content .title a {
+    body main .products .products-container .row .product-grid:hover .product-content .title a {
       color: #000;
       font-weight: 600;
       text-decoration: underline; }
-    body main .products .products-container .row div .product-grid .product-buy {
+    body main .products .products-container .row .product-grid .product-buy {
       opacity: 0; }
-      body main .products .products-container .row div .product-grid .product-buy a {
+      body main .products .products-container .row .product-grid .product-buy a {
         text-decoration: none; }
-        body main .products .products-container .row div .product-grid .product-buy a i {
+        body main .products .products-container .row .product-grid .product-buy a i {
           padding: .6rem;
           background-color: rgba(235, 213, 127, 0.8);
           transition: all .5s ease-out 0s;
           cursor: pointer; }
-        body main .products .products-container .row div .product-grid .product-buy a .ver {
+        body main .products .products-container .row .product-grid .product-buy a .ver {
           margin-right: .2rem; }
-        body main .products .products-container .row div .product-grid .product-buy a .agregar {
+        body main .products .products-container .row .product-grid .product-buy a .agregar {
           margin-left: .2rem; }
-    body main .products .products-container .row div .product-grid .product-content {
+    body main .products .products-container .row .product-grid .product-content {
       background-color: #fff;
       text-align: center;
       padding: .5rem;
@@ -98,55 +98,55 @@ body {
       right: 0;
       z-index: 1;
       transition: all .3s; }
-      body main .products .products-container .row div .product-grid .product-content .title {
+      body main .products .products-container .row .product-grid .product-content .title {
         font-size: 1rem;
         font-weight: 400;
         letter-spacing: .5px;
         margin: 0 0 10px;
         transition: all .3s ease-out; }
-        body main .products .products-container .row div .product-grid .product-content .title a {
+        body main .products .products-container .row .product-grid .product-content .title a {
           text-decoration: none;
           color: #333; }
-      body main .products .products-container .row div .product-grid .product-content .price {
+      body main .products .products-container .row .product-grid .product-content .price {
         color: #333;
         font-size: 17px;
         font-weight: 700;
         margin-bottom: 8px;
         text-align: center;
         transition: all .3s; }
-        body main .products .products-container .row div .product-grid .product-content .price span {
+        body main .products .products-container .row .product-grid .product-content .price span {
           color: #777;
           font-size: 13px;
           font-weight: 400;
           text-decoration: line-through;
           margin-left: 3px;
           display: inline-block; }
-    body main .products .products-container .row div .product-grid .product-image {
+    body main .products .products-container .row .product-grid .product-image {
       position: relative;
       transition: all .3s ease 0s; }
-      body main .products .products-container .row div .product-grid .product-image a {
+      body main .products .products-container .row .product-grid .product-image a {
         display: block;
         cursor: default; }
-        body main .products .products-container .row div .product-grid .product-image a .pic-1 {
+        body main .products .products-container .row .product-grid .product-image a .pic-1 {
           opacity: 1;
           transition: all .3s ease-out 0s; }
-        body main .products .products-container .row div .product-grid .product-image a .pic-2 {
+        body main .products .products-container .row .product-grid .product-image a .pic-2 {
           opacity: 0;
           position: absolute;
           top: 0;
           left: 0;
           transition: all .3s ease-out 0s; }
-        body main .products .products-container .row div .product-grid .product-image a:hover .pic-2 {
+        body main .products .products-container .row .product-grid .product-image a:hover .pic-2 {
           opacity: 1; }
-      body main .products .products-container .row div .product-grid .product-image img {
+      body main .products .products-container .row .product-grid .product-image img {
         width: 100%;
         height: 360px;
         object-fit: cover; }
-      body main .products .products-container .row div .product-grid .product-image .product-discount-label {
+      body main .products .products-container .row .product-grid .product-image .product-discount-label {
         background-color: #333;
         left: auto;
         right: 0; }
-      body main .products .products-container .row div .product-grid .product-image .product-new-label {
+      body main .products .products-container .row .product-grid .product-image .product-new-label {
         color: black;
         background-color: #FCCC0D;
         left: 0; }

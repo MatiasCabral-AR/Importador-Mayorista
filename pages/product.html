@@ -51,24 +51,50 @@
               </div>
             </article>
         </section>
-        <section class="container-fluid bar mt-5">
-          <div class="d-flex justify-content-around align-items-center">
-            <div class="bar-item d-flex flex-column justify-content-center align-items-center">
+        <!-- Barra inferior -->
+        <section class="my-2 row bar mx-auto">
+          <div class="d-flex bar-item justify-content-center align-items-center">
+            <div class="bar-item mx-3 d-flex flex-column justify-content-center align-items-center">
                 <i class="fas fa-truck"></i>
-                <p>Enviamos a todo el pais</p>
+                <p class="text-wrap text-center">Enviamos a todo el pais</p>
             </div>
-            <div class="bar-item d-flex flex-column justify-content-center align-items-center">
-                <div>
+            <div class="bar-item mx-3 d-flex flex-column justify-content-center align-items-center">
+                <div class="d-flex justify-content-center">
                   <i class="fas fa-money-bill"></i>
                   <i class="fa-solid fa-building-columns"></i>
                 </div>
-                <p>Efectivo y Tranferencias Bancarias</p>
+                <p class="text-wrap text-center">Efectivo y Tranferencias Bancarias</p>
             </div>
-            <div class="bar-item d-flex flex-column justify-content-center align-items-center">
+            <div class="bar-item mx-3 d-flex flex-column justify-content-center align-items-center">
                 <i class="fa-solid fa-lock"></i>
-                <p>Compra Segura</p>
+                <p class="text-wrap text-center">Compra Segura</p>
             </div>
           </div>
+      </section>
+      <!-- Cotizacion Dolar del dia-->
+      <section class="my-2">
+        <p class="title text-center bg-dark text-light">Cotizacion del Dolar</p>
+        <table class="w-100 dollarTable table table-dark table-stripped table-hover">
+          <thead>
+            <tr>
+              <td scope="col" class="text-center pe-none">#</td>
+              <th scope="col" class="text-center pe-none">Compra</th>
+              <th scope="col" class="text-center pe-none">Venta</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row" class="text-center user-select-none">Blue</th>
+              <td class="text-center blueCompra user-select-none">Compra Blue</td>
+              <td class="text-center blueVenta user-select-none">Venta Blue</td>
+            </tr>
+            <tr>
+              <th scope="row" class="text-center user-select-none">Oficial</th>
+              <td class="text-center oficialCompra user-select-none">Compra Oficial</td>
+              <td class="text-center oficialVenta user-select-none">Venta Oficial</td>
+            </tr>
+          </tbody>
+        </table>
       </section>
       <!-- Modal -->
       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -82,7 +108,7 @@
             <div class="modal-footer">
               <p class="mx-auto fw-bold">Total Compra : <span class="fw-normal" id="cart-total">$ 0</span></p>
               <div class="modal-buttons">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-danger">Borrar Carrito</button>
                 <button type="button" class="btn btn-primary">Comprar</button>
               </div>
             </div>
@@ -90,10 +116,6 @@
         </div>
       </div>
     </main>
-    <div class="row bg-warning">
-      <p class="blue text-dark text-center display-4"></p>
-      <p class="oficial text-dark text-center display-4"></p>
-    </div>
     <footer class="mt-5 footer container d-flex justify-content-around" id="footer">
       <div class="">
           <p>Si deseas recibir nuestro catalogo de Productos, completa el siguiente formulario.</p>
@@ -127,5 +149,6 @@
   </div>
   <!-- Scripts -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>
