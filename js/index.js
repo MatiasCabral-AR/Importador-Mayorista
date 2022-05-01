@@ -19,7 +19,7 @@ function productCreation(productRow, product){
     }
     let productContent = `
             <div class="product-grid col-lg-3 col-md-6 mb-1 " id="${product.id}" >
-                <div class="product-image">
+                <div class="product-image p-1">
                     <a href="javascript:void(0)">
                         <img class="pic-1" alt="Imagen de Producto" src="${product.src1}">
                         <img class="pic-2" alt="Imagen de Producto" src="${product.src2}">

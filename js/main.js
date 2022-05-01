@@ -84,37 +84,9 @@ export function buyCartCicked(){
             document.getElementsByClassName("modal-body")[0].removeChild(document.getElementsByClassName("modal-body")[0].firstChild)
         }
         localStorage.removeItem("cart")
-        Toastify({
-            text : "Muchas Gracias por su compra !",
-            duration : 1500 ,
-            gravity : "top",
-            position : "center",
-            offset : {
-                y : "2rem"
-            },
-            style : {
-                background : "green",
-                color : "black",
-                fontWeight : "500",
-            }
-
-        }).showToast();
+        showAlert("success", "Listo !", "Muchas Gracias por tu compra.")
     }else{
-        Toastify({
-            text : "El carrito esta vacio.",
-            duration : 1500 ,
-            gravity : "top",
-            position : "center",
-            offset : {
-                y : "2rem"
-            },
-            style : {
-                background : "red",
-                color : "black",
-                fontWeight : "500",
-            }
-
-        }).showToast();
+        showAlert("error", "Error", "El carrito esta vacio !")
     }
     checkCart();
     updateCartTotal();
@@ -220,7 +192,11 @@ export function showToastify(msj, background){
 }
 
 export function showAlert(icon, title, text){
-    
+    Swal.fire({
+        icon: `${icon}`,
+        title: `${title}`,
+        text: `${text}`,
+      })
 }
 
 export function deleteCart(){
