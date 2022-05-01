@@ -74,7 +74,6 @@ export function checkCart(){
     for(let i = 0; i < cart.length; i++){
         addToCart(cart[i])
     }
-    console.log("Carrito creado")
 }
 
 // Cart purchase button function (delete all items in cart (modal and localStorage), and show alert)

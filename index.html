@@ -22,6 +22,9 @@
         <nav class="navbar fixed-top navbar-expand-lg navbar-light">
             <div class="container-fluid">
               <a class="navbar-brand" href="#">Logo Empresa</a>
+              <div class="ms-auto d-lg-none">
+                <a data-bs-toggle="modal" data-bs-target="#exampleModal" class="me-2 text-decoration-none text-dark" href="#modal"><i class="fas fa-shopping-cart fa-2xl me-3"></i></a>
+              </div>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
@@ -30,20 +33,22 @@
                   <a class="nav-link active me-3 text-center" aria-current="page" href="#">Inicio</a>
                   <a class="nav-link active me-3 text-center" href="#">Quienes Somos</a>
                   <a class="nav-link active me-3 text-center" href="#">Shop</a>
-                  <a class="nav-link active text-center" href="#footer">Contacto</a>
+                  <a class="nav-link active me-3 text-center" href="#footer">Contacto</a>
+                </div>
+                <div class="ms-auto d-none d-lg-block">
+                  <a data-bs-toggle="modal" data-bs-target="#exampleModal" class="me-2 text-decoration-none text-dark" href="#modal"><i class="fas fa-shopping-cart fa-2xl me-3"></i></a>
                 </div>
               </div>
             </div>
           </nav>
     </header>
     <main>
-        <section class="presentation container">
-            <article class="presentation-logo">
-                <img class="mx-auto d-block img-fluid"src="resources/img/logo.jpg" alt="">
-            </article>
+        <section class="presentation container-fluid">
             <article class="presentation-text">
-                <div class="d-flex flex-column justify-content-center align-items-center">
+                <img class="mx-auto d-block img-fluid"src="resources/img/logo.jpg" alt="">
+                <div class="d-flex flex-column justify-content-center align-items-center p-3">
                     <p class="presentation-text-title">Bienvenidos a Importador Mayorista Córdoba</p>
+                    <hr>
                     <p class="presentation-text-description">Ahorra tiempo y dinero haciendo tu compra en Nuestra Tienda</p>
                 </div>
             </article>
@@ -187,10 +192,9 @@
             <p><i class="fas fa-clock"></i> : XXXXXXXXXX</p>
         </div>
     </footer>
-    <div class="fixed-bottom d-flex justify-content-end mb-3">
-        <a data-bs-toggle="modal" data-bs-target="#exampleModal" class="text-decoration-none text-dark" href="#modal"><i class="fas fa-shopping-cart fa-2xl me-3"></i></a>
+    <div class="fixed-bottom d-flex justify-content-end mb-3 nav-item">
         <a class="text-dark" href="https://wa.me/543512693361?text=Queria%20consultar%20por%20los%20productos%20de%20tu%20pagina."><i class="fa-brands fa-whatsapp fa-2xl me-3"></i></a>
-        <a class="text-dark" href=""><i class="fa-brands fa-facebook fa-2xl me-3"></i></a>
+        <a class="text-dark" target="_blank" href="https://www.facebook.com/Importador-Mayorista-103486618970792"><i class="fa-brands fa-facebook fa-2xl me-3"></i></a>
         <a class="text-dark" href=""><i class="fa-brands fa-instagram fa-2xl me-2"></i></a>     
     </div>
     <!-- Scripts -->

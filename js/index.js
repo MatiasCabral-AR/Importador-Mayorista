@@ -18,7 +18,7 @@ function productCreation(productRow, product){
         price = parseInt(product.price) - (parseInt(product.price) * parseInt(product.discount) / 100)
     }
     let productContent = `
-            <div class="product-grid col-md-3 col-sm-6 mb-1 " id="${product.id}" >
+            <div class="product-grid col-lg-3 col-md-6 mb-1 " id="${product.id}" >
                 <div class="product-image">
                     <a href="javascript:void(0)">
                         <img class="pic-1" alt="Imagen de Producto" src="${product.src1}">
@@ -37,7 +37,7 @@ function productCreation(productRow, product){
                 </div>
                 <div class="product-content">
                     <p class="title"><a href="pages/shop/product.html">${product.name}</a></p>
-                    <div class="price">${price}<span class="discount">${realPrice}</span></div>
+                    <div class="price">$${price}<span class="discount">${realPrice}</span></div>
                 </div>
             </div>`
     productRow.innerHTML += productContent
@@ -56,7 +56,6 @@ function indexMain(){
     let productRow = document.getElementById("productRow")
     let productsArray = JSON.parse(localStorage.getItem("products"))
     for (let i = 0; i < productsArray.length; i++){
-        console.log(productRow)
         let product = productsArray[i]
         productCreation(productRow, product)
     }

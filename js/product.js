@@ -6,7 +6,7 @@ document.readyState == 'loading' ? document.addEventListener('DOMContentLoaded',
 //----------------------------- product.js Core Functions -----------------------------
 
 function loadProduct(id){
-    let product = productos.find(object => object.id === id)
+    let product = checkProductPrice(productos.find(object => object.id === id))
     let productContainer = document.getElementsByClassName("product-info")
     document.getElementsByClassName("product-img")[0].innerHTML =  `<img src="${product.src1}" alt="Imagen de Producto">`
     productContainer[0].children[0].innerHTML = product.name
