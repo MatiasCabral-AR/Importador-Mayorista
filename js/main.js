@@ -190,7 +190,7 @@ export function showToastify(msj, background){
 
     }).showToast();
 }
-
+// SweetAlert function
 export function showAlert(icon, title, text){
     Swal.fire({
         icon: `${icon}`,
@@ -198,7 +198,7 @@ export function showAlert(icon, title, text){
         text: `${text}`,
       })
 }
-
+// Delete full cart function
 export function deleteCart(){
 
 }
