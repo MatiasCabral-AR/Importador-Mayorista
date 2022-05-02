@@ -31,7 +31,8 @@ body {
       margin-bottom: 2rem;
       padding-top: .5rem;
       padding-bottom: .5rem;
-      display: flex; }
+      display: flex;
+      flex-wrap: wrap; }
       body main .presentation .presentation-text div {
         border-radius: 1rem; }
         body main .presentation .presentation-text div .presentation-text-title {
