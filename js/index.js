@@ -54,9 +54,8 @@ function indexMain(){
     localStorage.removeItem("productData") 
     // Create products in HTML based on data from data.js
     let productRow = document.getElementById("productRow")
-    let productsArray = JSON.parse(localStorage.getItem("products"))
-    for (let i = 0; i < productsArray.length; i++){
-        let product = productsArray[i]
+    for (let i = 0; i < productos.length; i++){
+        let product = productos[i]
         productCreation(productRow, product)
     }
     // Event Listener for Add to Cart button in every product
