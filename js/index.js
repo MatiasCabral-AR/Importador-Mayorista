@@ -1,5 +1,5 @@
 // Importing ALL functions from main.js
-import {main, removeCartItem, quantityChanged, updateCartTotal, checkCart, buyCartCicked, productCheck, checkProductPrice, addToCart, addToCartClick, dollarBlue, showDollar} from "./main.js";
+import {main, removeCartItem, quantityChanged, updateCartTotal, checkCart, buyCartCicked, productCheck, checkProductPrice, addToCart, addToCartClick, dollarBlue, showDollar, deleteCart, deleteCartButton} from "./main.js";
 // Fires index.js ONLY when all the DOM content is loaded (images and stylesheets not included)
 document.readyState == 'loading' ? document.addEventListener('DOMContentLoaded', main) : indexMain()
 
@@ -7,7 +7,8 @@ document.readyState == 'loading' ? document.addEventListener('DOMContentLoaded',
 
 // HTML Product Creation
 function productCreation(productRow, product){
-    let price = product.price
+    let {id, name, price, src1, src2} = product
+    //let price = product.price
     let discount = ""
     let spanClass = "d-none"
     let realPrice = ""
@@ -18,11 +19,11 @@ function productCreation(productRow, product){
         price = parseInt(product.price) - (parseInt(product.price) * parseInt(product.discount) / 100)
     }
     let productContent = `
-            <div class="product-grid col-lg-3 col-md-6 mb-1 " id="${product.id}" >
+            <div class="product-grid col-lg-3 col-md-6 mb-1 " id="${id}" >
                 <div class="product-image p-1">
                     <a href="javascript:void(0)">
-                        <img class="pic-1" alt="Imagen de Producto" src="${product.src1}">
-                        <img class="pic-2" alt="Imagen de Producto" src="${product.src2}">
+                        <img class="pic-1" alt="Imagen de Producto" src="${src1}">
+                        <img class="pic-2" alt="Imagen de Producto" src="${src2}">
                     </a>
                     <div class="product-buy w-100 d-flex justify-content-center align-items-center position-absolute">
                         <a href="pages/product.html" data-tip="Ver Producto" class="product-show d-flex justify-content-center align-items-center">
@@ -36,7 +37,7 @@ function productCreation(productRow, product){
                     <span class="product-discount-label ${spanClass}">${discount}</span>
                 </div>
                 <div class="product-content">
-                    <p class="title"><a href="pages/shop/product.html">${product.name}</a></p>
+                    <p class="title"><a href="pages/shop/product.html">${name}</a></p>
                     <div class="price">$${price}<span class="discount">${realPrice}</span></div>
                 </div>
             </div>`

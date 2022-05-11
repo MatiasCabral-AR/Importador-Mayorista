@@ -18,32 +18,37 @@
 </head>
 <body>
     <header>
-        <nav class="navbar fixed-top navbar-expand-lg navbar-light">
-            <div class="container-fluid">
-              <a class="navbar-brand" href="../index.html">Logo Empresa</a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                  <a class="nav-link active me-3 text-center" aria-current="page" href="../index.html">Inicio</a>
-                  <a class="nav-link active me-3 text-center" href="#">Quienes Somos</a>
-                  <a class="nav-link active me-3 text-center" href="#">Shop</a>
-                  <a class="nav-link active text-center" href="#footer">Contacto</a>
-                </div>
-              </div>
+      <nav class="navbar fixed-top navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="../index.html">Logo Empresa</a>
+          <div class="ms-auto d-lg-none">
+            <a data-bs-toggle="modal" data-bs-target="#exampleModal" class="me-2 text-decoration-none text-dark" href="#modal"><i class="fas fa-shopping-cart fa-2xl me-3"></i></a>
+          </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+              <a class="nav-link active me-3 text-center" aria-current="page" href="../index.html">Inicio</a>
+              <a class="nav-link active me-3 text-center" href="#">Quienes Somos</a>
+              <a class="nav-link active me-3 text-center" href="#">Contacto</a>
             </div>
-          </nav>
+            <div class="ms-auto d-none d-lg-block">
+              <a data-bs-toggle="modal" data-bs-target="#exampleModal" class="me-2 text-decoration-none text-dark" href="#modal"><i class="fas fa-shopping-cart fa-2xl me-3"></i></a>
+            </div>
+          </div>
+        </div>
+      </nav>
     </header>
     <main>
         <section class="container d-flex flex-wrap flex-row justify-content-center product-container">
             <article class="product-img mx-auto"></article>
             <article class="mx-auto product-info">
-              <p class="product-name text-center">Docena Soquete</p>
-              <p class="product-price text-center">$1000</p>
-              <p class="product-description text-center">Medias Alto-max - 65% Algodon, 35% Polyester</p>
-              <p class="product-sizes text-center">Talles del 34 al 43</p>
-              <p class="text-center">Los colores y talles en la docena son surtidos</p>
+              <p class="product-name text-center"></p>
+              <p class="product-price text-center"></p>
+              <!--<p class="product-description text-center">Medias Alto-max - 65% Algodon, 35% Polyester</p>
+                  <p class="product-sizes text-center">Talles del 34 al 43</p>
+                  <p class="text-center">Los colores y talles en la docena son surtidos</p>-->
               <hr>
               <p class="text-center">Comprando mas de 10 docenas.<br>Envio a domicilio gratis dentro de Cordoba Capital.</p>
               <div class="text-center">
@@ -121,17 +126,15 @@
           <p>Si deseas recibir nuestro catalogo de Productos, completa el siguiente formulario.</p>
           <form action="" class="footer-form d-flex flex-column justify-content-center align-items-center mb-3">
               <div class="footer-form-label my-1 w-100">
-                  <input class="w-100" type="text" id="name" placeholder="Nombre">
+                  <input class="w-100" class="input" type="text" id="name" placeholder="Nombre">
               </div>
               <div class="footer-form-label my-1 w-100">
-                  <input class="w-100" type="text" id="tel" placeholder="Numero de Telefono">
+                  <input class="w-100" class="input" type="text" id="tel" placeholder="Numero de Telefono">
               </div>
               <div class="footer-form-label my-1 w-100">
-                  <input class="w-100" type="text" id="mail" placeholder="Direccion de E-mail">
+                  <input class="w-100" class="input" type="text" id="mail" placeholder="Direccion de E-mail">
               </div>
-              <div class="footer-form-label">
-                  <input type="submit" value="Enviar">
-              </div>
+              <button type="button" class="btn btn-success">Success</button>
           </form>
       </div>
       <div class="d-flex flex-column justify-content-center">
@@ -142,10 +145,9 @@
       </div>
   </footer>
   <div class="fixed-bottom d-flex justify-content-end mb-3">
-    <a data-bs-toggle="modal" data-bs-target="#exampleModal" class="text-decoration-none text-dark" href="#modal"><i class="fas fa-shopping-cart fa-2xl me-3"></i></a>
-    <a class="text-dark" href=""><i class="fa-brands fa-whatsapp fa-2xl me-3"></i></a>
-    <a class="text-dark" href=""><i class="fa-brands fa-facebook fa-2xl me-3"></i></a>
-    <a class="text-dark" href=""><i class="fa-brands fa-instagram fa-2xl me-2"></i></a>     
+    <a class="text-success" data-tip="Whatsapp" href="https://wa.me/543512693361?text=Queria%20consultar%20por%20los%20productos%20de%20tu%20pagina."><i class="fa-brands fa-whatsapp fa-2xl me-3"></i></a>
+    <a class="text-primary" data-tip="Facebook" target="_blank" href="https://www.facebook.com/Importador-Mayorista-103486618970792"><i class="fa-brands fa-facebook fa-2xl me-3"></i></a>
+    <a class="text-danger" data-tip="Instagram" href=""><i class="fa-brands fa-instagram fa-2xl me-2"></i></a>        
   </div>
   <!-- Scripts -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>

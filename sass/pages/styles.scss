@@ -232,6 +232,15 @@ body{
         //product.html
         .product-container{
             margin-top: 6rem;
+            margin-bottom: 4rem;
+            .product-img{
+                .zoom{
+                    transition: transform ease-in-out 0.3s;
+                    &:hover{
+                        transform: scale(1.2);
+                    }
+                }
+            }
             
         }
         .modal{
@@ -261,7 +270,6 @@ body{
                 .footer-form-label{
                     input{
                         border: 2px solid clr(imp, base);
-                        background-color: lightgray;
                         border-radius: .3rem;
                         &::placeholder{
                             color: black;
@@ -273,7 +281,22 @@ body{
         }
     }
     .fixed-bottom{
-        background-color: $bg-tp;
+        width: fit-content;
+        left: 1rem;
+        a{
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            background-color: $bg-tp;
+            
+            &::before{
+                @include before-icon;
+            }
+            &:hover::before{
+                @include move-up(2rem);
+                opacity: 1;
+            }
+        }
     }
 }
 

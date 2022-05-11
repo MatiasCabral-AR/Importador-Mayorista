@@ -20,11 +20,10 @@ export function main(){
     // Buy cart button Event Listener
     document.getElementsByClassName("btn-primary")[0].addEventListener("click", buyCartCicked);
     // Delete cart button Event listener
-    //document.getElementsByClassName("btn-danger")[0].addEventListener("click", deleteCart)
+    document.getElementsByClassName("btn-danger")[0].addEventListener("click", deleteCartButton)
 }
 
 //----------------------------- main.js Core Functions -----------------------------
-
 // Remove cart item from <modal> and from cart array
 export function removeCartItem(event){
     let buttonClicked = event.target
@@ -45,13 +44,12 @@ export function quantityChanged(input){
 }
 // Function to update the cart total price (inside Modal and "coming soon" in totalCart value inside localStorage)
 export function updateCartTotal(){
-    let cartProductsInfo = document.getElementsByClassName("cart-product")
+    let cartProducts = document.getElementsByClassName("cart-product")
     let total = 0
-    for (let i = 0; i < cartProductsInfo.length ; i++){
+    for (let i = 0; i < cartProducts.length ; i++){
         let cart = JSON.parse(localStorage.getItem("cart"))
-        let product = cart.find(element => element.id == cartProductsInfo[i].id )
-        let quantitylElement = cartProductsInfo[i].getElementsByClassName("cart-quantity-input")[0]
-        let quantity = parseFloat(quantitylElement.value)
+        let product = cart.find(element => element.id == cartProducts[i].id )
+        let quantity = parseFloat(cartProducts[i].getElementsByClassName("cart-quantity-input")[0].value)
         product.quantity = quantity
         cart[cart.findIndex(object => object.id === product.id)] = product;
         localStorage.setItem("cart", JSON.stringify(cart))
@@ -59,8 +57,7 @@ export function updateCartTotal(){
     }
     document.getElementById("cart-total").innerText = "$" + total
 }
-
-// Create an empty cart in localStorage if this does not exist, and if it exist load it in modal
+// Create an empty cart in localStorage if this does not exist, and if it exist load it in modal.
 export function checkCart(){
     let cart = JSON.parse(localStorage.getItem("cart"))
     if(!cart){
@@ -75,15 +72,14 @@ export function checkCart(){
         addToCart(cart[i])
     }
 }
-
 // Cart purchase button function (delete all items in cart (modal and localStorage), and show alert)
 export function buyCartCicked(){
     let cart = JSON.parse(localStorage.getItem("cart"))
+    let total = document.getElementById("cart-total").innerText
+    let cartBought = [cart, total]
+    localStorage.setItem("JSONcartBought", JSON.stringify(cartBought))
     if (cart.length > 0){
-        while (document.getElementsByClassName("modal-body")[0].hasChildNodes()){
-            document.getElementsByClassName("modal-body")[0].removeChild(document.getElementsByClassName("modal-body")[0].firstChild)
-        }
-        localStorage.removeItem("cart")
+        deleteCart()
         showAlert("success", "Listo !", "Muchas Gracias por tu compra.")
     }else{
         showAlert("error", "Error", "El carrito esta vacio !")
@@ -200,6 +196,32 @@ export function showAlert(icon, title, text){
 }
 // Delete full cart function
 export function deleteCart(){
-
+    while (document.getElementsByClassName("modal-body")[0].hasChildNodes()){
+        document.getElementsByClassName("modal-body")[0].removeChild(document.getElementsByClassName("modal-body")[0].firstChild)
+    }
+    localStorage.removeItem("cart")
+    checkCart()
+    updateCartTotal()
+}
+// Delete cart button function
+export function deleteCartButton(){
+    let cart = JSON.parse(localStorage.getItem("cart"))
+    if (cart.length > 0){
+        Swal.fire({
+            icon: 'warning',
+            title: 'Deseas Borrar todo el carrito ?',
+            showCancelButton: true,
+            confirmButtonText: 'Borrar',
+            cancelButtonText: `Cancelar`,
+          }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+              Swal.fire('Carrito borrado', '', 'success')
+              deleteCart()
+            }
+          })
+    }else{
+        showAlert("warning", "Error !", "El carrito esta vacio")
+    }
 }
 
